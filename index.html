@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Trainer interactivo de Administración de Empresas (ADE): 12 temas (UD 1-12), teoría, problemas resueltos paso a paso y autoevaluación tipo test para el examen final.">
+<script>(function(){try{var t=localStorage.getItem('ade-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<title>ADE · Trainer de Examen · 29 jun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Hanken+Grotesk:ital,wght@0,300..800;1,400..600&family=Geist+Mono:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+/* ═══ SISTEMA DE DISEÑO · Técnico suizo · claro/oscuro ═══ */
+:root{
+  --bg:#ffffff; --bg-soft:#f5f5f2; --bg-sunk:#ececE7; --panel:#fbfbf9;
+  --ink:#0a0a0a; --ink-2:#46463f; --ink-3:#8c8c84;
+  --line:#e5e5df; --line-2:#d2d2c9;
+  --accent:#ff5a1f; --accent-2:#cc3d0a; --accent-soft:#ff7a4d; --accent-glow:rgba(255,90,31,.20);
+  --ok:#0f7a44; --ok-soft:#3a9b6a; --ok-bg:rgba(15,122,68,.10);
+  --bad:#c0341d; --bad-bg:rgba(192,52,29,.10);
+  --chip:#111315; --chip-ink:#f4f4f1;
+  --font-display:'Bricolage Grotesque','Arial Narrow',sans-serif;
+  --font-body:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+  --font-mono:'Geist Mono','SFMono-Regular',ui-monospace,monospace;
+  /* alias heredados (estilos inline + SVG del contenido) */
+  --bg-deep:var(--bg); --bg-1:var(--bg-soft); --bg-2:var(--bg-sunk); --bg-3:#e3e3dc;
+  --ink-soft:var(--ink-2); --ink-faint:var(--ink-3); --ink-deep:#b6b6ad;
+  --rust:var(--accent); --rust-deep:var(--accent-2); --rust-soft:var(--accent-soft); --rust-glow:var(--accent-glow);
+  --patina:var(--ok); --patina-deep:#0b5a32; --patina-soft:var(--ok-soft);
+  --brass:#b07000; --brass-deep:#8a5600;
+  --hairline:var(--line); --hairline-soft:#eeeee8; --shadow:rgba(20,20,20,.10);
+  --serif-display:var(--font-display); --serif-body:var(--font-body); --mono:var(--font-mono);
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --bg:#0c0d0e; --bg-soft:#15171a; --bg-sunk:#1c1f22; --panel:#121417;
+  --ink:#f3f3f0; --ink-2:#bdbeb9; --ink-3:#7d7f7b;
+  --line:#262a2e; --line-2:#373c41;
+  --accent:#ff6a33; --accent-2:#ff8a5c; --accent-soft:#ff8a5c; --accent-glow:rgba(255,106,51,.30);
+  --ok:#4cc78a; --ok-soft:#6fd6a3; --ok-bg:rgba(76,199,138,.12);
+  --bad:#ff6b53; --bad-bg:rgba(255,107,83,.12);
+  --chip:#05060a; --chip-ink:#f4f4f1;
+  --bg-3:#23262a; --ink-deep:#5b5e60; --hairline-soft:#1d2023; --shadow:rgba(0,0,0,.5);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--accent);color:#fff}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink-2);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bg-soft)}
+::-webkit-scrollbar-thumb{background:var(--line-2);border:3px solid var(--bg-soft)}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+.layout{display:grid;grid-template-columns:268px 1fr}
+
+/* ── SIDEBAR ── */
+aside.sidebar{position:sticky;top:0;height:100vh;width:268px;background:var(--bg-soft);border-right:1px solid var(--line);padding:30px 22px;overflow-y:auto;z-index:60;display:flex;flex-direction:column;gap:22px}
+.sidebar .site-title{font-family:var(--font-display);font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.05;margin:0}
+.sidebar .site-title em{font-style:normal;color:var(--accent)}
+.sidebar .meta{font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-3);border-bottom:1px solid var(--line);padding-bottom:14px}
+.sidebar nav{display:flex;flex-direction:column;gap:2px}
+.sidebar nav a{display:flex;align-items:baseline;gap:10px;padding:7px 10px;color:var(--ink-3);text-decoration:none;font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:-0.01em;transition:color .18s,background .18s;border-radius:6px}
+.sidebar nav a:hover{background:var(--bg-sunk);color:var(--ink)}
+.sidebar nav a.active{color:var(--ink);background:var(--bg-sunk)}
+.sidebar nav a .num{font-family:var(--font-mono);font-size:10px;font-weight:500;color:var(--ink-3);min-width:20px;letter-spacing:0}
+.sidebar nav a:hover .num,.sidebar nav a.active .num{color:var(--accent)}
+.sidebar .progress-box{border-top:1px solid var(--line);padding-top:16px;margin-top:auto}
+.sidebar .progress-box label{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-3);display:block;margin-bottom:9px}
+.sidebar .progress-bar{height:6px;background:var(--bg-sunk);border-radius:99px;overflow:hidden}
+.sidebar .progress-bar span{display:block;height:100%;background:var(--accent);transition:width .4s}
+.sidebar .progress-val{font-family:var(--font-mono);font-size:11px;color:var(--ink-2);margin-top:7px;text-align:right}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--line-2);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-2);transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--ink)}
+.theme-toggle .tt-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:inset -4px -4px 0 0 var(--bg);transition:box-shadow .25s}
+[data-theme="dark"] .theme-toggle .tt-dot{box-shadow:inset 0 0 0 0 var(--bg)}
+
+main{max-width:none;padding:0;min-width:0}
+
+/* ── MASTHEAD ── */
+header.masthead{border-bottom:1px solid var(--line);padding:72px 64px 44px;position:relative;display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;background:
+  repeating-linear-gradient(0deg,transparent 0 31px,var(--line) 31px 32px),
+  repeating-linear-gradient(90deg,transparent 0 31px,var(--line) 31px 32px),
+  var(--bg)}
+header.masthead::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,var(--bg) 86%);pointer-events:none}
+header.masthead > *{position:relative;z-index:1}
+.masthead .pubinfo{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.18em;display:flex;gap:20px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.masthead .pubinfo .marker{color:var(--accent);font-weight:600}
+.masthead .pubinfo .spacer{flex:1}
+.masthead h1.title{font-family:var(--font-display);font-weight:800;font-size:clamp(56px,11vw,150px);line-height:0.86;letter-spacing:-0.045em;color:var(--ink)}
+.masthead h1.title .accent-letter{color:var(--accent)}
+.masthead .subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--ink-2);margin-top:22px;letter-spacing:-0.01em;max-width:620px;line-height:1.45}
+.masthead .colophon{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-3);text-align:right;line-height:1.8;align-self:end;padding-bottom:10px}
+.masthead .colophon b{color:var(--accent);font-weight:600;display:block;margin-bottom:8px;font-size:11px}
+
+/* ── CHAPTERS ── */
+section.chapter{padding:72px 64px 60px;scroll-margin-top:24px;border-bottom:1px solid var(--line)}
+.section-head{margin-bottom:44px;padding-bottom:22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:14px}
+.section-head .label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:10px}
+.section-head .label::before{content:'';width:22px;height:2px;background:var(--accent)}
+.section-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,5.2vw,60px);line-height:0.98;letter-spacing:-0.035em;color:var(--ink)}
+.section-head h2 em{font-style:normal;color:var(--accent)}
+.section-head .lede{font-family:var(--font-body);font-weight:400;font-size:15px;line-height:1.6;color:var(--ink-2);border-left:2px solid var(--accent);padding:4px 0 4px 18px;max-width:720px}
+
+.content-body{max-width:1000px}
+.content-body h3{font-family:var(--font-display);font-weight:600;font-size:24px;color:var(--ink);margin:42px 0 14px;letter-spacing:-0.02em}
+.content-body h4{font-family:var(--font-body);font-weight:700;font-size:16px;color:var(--ink);margin:26px 0 9px;letter-spacing:-0.01em}
+.content-body p{margin-bottom:13px}
+.content-body ul,.content-body ol{margin:11px 0 16px 22px}
+.content-body li{margin-bottom:6px}
+.content-body code{font-family:var(--font-mono);font-size:13px;background:var(--bg-sunk);padding:2px 6px;border-radius:4px;color:var(--ink)}
+.content-body table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.content-body th,.content-body td{padding:11px 15px;text-align:left;border-bottom:1px solid var(--line)}
+.content-body th{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);font-weight:500;border-bottom:1.5px solid var(--line-2);background:transparent}
+.content-body td{background:transparent;color:var(--ink-2)}
+.content-body tr:hover td{background:var(--bg-soft)}
+.content-body .formula-box{background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--accent);padding:15px 20px;margin:18px 0;font-family:var(--font-mono);font-size:14px;line-height:1.7;color:var(--ink);border-radius:0 8px 8px 0}
+.content-body .formula-box .katex{font-size:1.05em}
+.content-body .note{background:var(--ok-bg);border-left:3px solid var(--ok);padding:13px 18px;margin:16px 0;font-size:14px;color:var(--ink-2);border-radius:0 8px 8px 0}
+.content-body .note b{color:var(--ok);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.16em;display:block;margin-bottom:5px}
+.content-body .warn{background:var(--accent-glow);border-left:3px solid var(--accent);padding:13px 18px;margin:16px 0;font-size:14px;color:var(--ink-2);border-radius:0 8px 8px 0}
+.content-body .warn b{color:var(--accent-2);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.16em;display:block;margin-bottom:5px}
+
+/* ── PROBLEMS ── */
+.problem{border:1px solid var(--line);border-radius:10px;margin:22px 0;background:var(--panel);overflow:hidden}
+.problem summary{padding:17px 22px;cursor:pointer;font-family:var(--font-body);font-weight:500;font-size:15.5px;color:var(--ink);list-style:none;position:relative;padding-right:130px}
+.problem summary::-webkit-details-marker{display:none}
+.problem summary::after{content:'+ ver resolución';position:absolute;right:22px;top:18px;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);font-weight:500}
+.problem[open] summary{border-bottom:1px solid var(--line)}
+.problem[open] summary::after{content:'− ocultar';color:var(--ink-3)}
+.problem .solution{padding:4px 22px 22px}
+.problem .solution-steps{display:flex;flex-direction:column;gap:13px;margin-top:16px}
+.problem .step{display:grid;grid-template-columns:26px 1fr;gap:13px;align-items:start}
+.problem .step-num{width:26px;height:26px;border-radius:50%;background:var(--bg-sunk);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:600}
+.problem .step-body{font-size:14px;line-height:1.6;color:var(--ink-2);padding-top:2px}
+.problem .result{background:var(--chip);color:var(--chip-ink);padding:16px 22px;margin-top:16px;font-family:var(--font-mono);font-size:14px;border-radius:8px;border-left:3px solid var(--accent)}
+.problem .result b{color:var(--accent-soft);margin-right:8px}
+
+/* ── QUIZ ── */
+.quiz-container{margin:30px 0}
+.quiz-q{border-top:1px solid var(--line);padding:28px 0;display:grid;grid-template-columns:64px 1fr;gap:24px}
+.quiz-q:last-child{border-bottom:1px solid var(--line)}
+.quiz-q .num{font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--accent);line-height:1;position:sticky;top:24px;align-self:start;letter-spacing:-0.04em}
+.quiz-q .num::before{content:'Q';display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;color:var(--ink-3);font-weight:500;margin-bottom:5px}
+.quiz-q .question{font-family:var(--font-body);font-size:16.5px;font-weight:500;line-height:1.5;color:var(--ink);margin-bottom:18px;letter-spacing:-0.01em}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-options label{display:grid;grid-template-columns:26px 1fr auto;gap:13px;align-items:baseline;padding:13px 16px;cursor:pointer;border:1px solid var(--line);border-radius:8px;transition:border-color .18s,background .18s;font-size:14px;line-height:1.45;color:var(--ink-2);background:var(--bg)}
+.quiz-options label:hover{border-color:var(--line-2);background:var(--bg-soft);color:var(--ink)}
+.quiz-options label .key{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);font-weight:500;text-transform:uppercase}
+.quiz-options input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;overflow:hidden}
+.quiz-options label.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.quiz-options label.correct .key{color:var(--ok)}
+.quiz-options label.correct::after{content:'✓ correcto';font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ok);font-weight:600}
+.quiz-options label.incorrect{background:var(--bad-bg);border-color:var(--bad);color:var(--ink)}
+.quiz-options label.incorrect .key{color:var(--bad)}
+.quiz-options label.incorrect::after{content:'✗ refutado';font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--bad);font-weight:600}
+.quiz-explain{margin-top:11px;padding:13px 17px;background:var(--bg-soft);border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;display:none;color:var(--ink-2)}
+.quiz-explain.show{display:block;animation:explainIn .35s ease-out}
+@keyframes explainIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.quiz-explain b{font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px;font-weight:600}
+
+/* ── CALCULATORS ── */
+.calc-box{border:1px solid var(--line);border-radius:12px;margin:22px 0;background:var(--panel);display:grid;grid-template-columns:290px 1fr;position:relative;overflow:hidden}
+.calc-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);z-index:2}
+.calc-box .panel-l{background:var(--bg-soft);padding:26px;display:flex;flex-direction:column;gap:11px;border-right:1px solid var(--line)}
+.calc-box .panel-l .ctitle{font-family:var(--font-display);font-size:21px;font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.1}
+.calc-box .panel-l .csubtitle{font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3)}
+.calc-box .panel-l .cformula{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);padding:11px 13px;border-radius:8px;margin-top:auto}
+.calc-box .panel-r{padding:26px;display:grid;gap:8px;align-content:start}
+.calc-row{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.calc-row:last-of-type{border-bottom:0}
+.calc-row label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-2)}
+.calc-row input,.calc-row select{font-family:var(--font-mono);font-size:15px;font-weight:500;background:var(--bg);border:1px solid var(--line-2);border-radius:7px;padding:8px 10px;color:var(--ink);outline:none;transition:border-color .18s,box-shadow .18s;width:100%}
+.calc-row input:focus,.calc-row select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.calc-row select{appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 16px) 16px,calc(100% - 11px) 16px;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.calc-row select option{background:var(--bg);color:var(--ink)}
+.calc-actions{display:flex;gap:10px;margin-top:14px}
+.btn{font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line-2);color:var(--ink-2);padding:11px 20px;border-radius:8px;cursor:pointer;transition:all .2s;font-weight:500}
+.btn:hover{border-color:var(--ink);color:var(--ink)}
+.btn-rust{border-color:var(--accent);color:var(--accent)}
+.btn-rust:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-2);border-color:var(--accent-2);box-shadow:0 4px 16px var(--accent-glow)}
+.calc-result{margin-top:18px;display:none}
+.calc-result.show{display:block;animation:readoutIn .5s cubic-bezier(0.2,0.8,0.2,1)}
+@keyframes readoutIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.readout{background:var(--chip);color:var(--chip-ink);padding:20px 24px;border-radius:10px;display:flex;align-items:baseline;justify-content:space-between;font-family:var(--font-mono);border-left:3px solid var(--accent)}
+.readout .readout-val{font-size:21px;font-weight:600;color:#fff}
+[data-theme="dark"] .readout .readout-val{color:var(--ink)}
+.readout .readout-unit{font-size:12px;color:var(--ink-3);margin-left:6px}
+.readout .readout-formula{font-size:11px;color:var(--ink-3);margin-top:6px}
+
+@media(max-width:1100px){
+  .layout{display:block}
+  aside.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px;flex-direction:column}
+  header.masthead{padding:48px 28px 32px}
+  section.chapter{padding:48px 28px 44px}
+  main{margin-left:0}
+  .calc-box{grid-template-columns:1fr}
+  .calc-box .panel-l{border-right:0;border-bottom:1px solid var(--line)}
+  .quiz-q{grid-template-columns:1fr}
+  .quiz-q .num{position:static;margin-bottom:6px}
+}
+/* ── Formulario ── */
+.formulario-actions{display:flex;gap:14px;margin:6px 0 26px;flex-wrap:wrap;align-items:center}
+.formulario-hint{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-3)}
+.formulario-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+.fcard{background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:14px 18px;break-inside:avoid}
+.fcard-h{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent);font-weight:600;margin-bottom:10px}
+.fcard ul{list-style:none;margin:0;padding:0}
+.fcard li{font-family:var(--font-mono);font-size:12.5px;line-height:1.6;color:var(--ink);padding:5px 0;border-bottom:1px dashed var(--line)}
+.fcard li:last-child{border-bottom:0}
+.fcard li .fu{display:block;font-family:var(--font-body);font-size:10.5px;line-height:1.4;color:var(--ink-3);margin-top:3px;letter-spacing:normal;text-transform:none}
+.fcard .katex{font-size:1em}
+@media (max-width:900px){.formulario-grid{grid-template-columns:1fr}}
+@media print{
+  @page{margin:11mm}
+  body.print-formulario{background:#fff}
+  body.print-formulario aside.sidebar,body.print-formulario .formulario-actions,body.print-formulario .back-link{display:none !important}
+  body.print-formulario main{margin:0 !important;padding:0 !important}
+  body.print-formulario .view:not(#formulario-view){display:none !important}
+  body.print-formulario #formulario-view{display:block !important;padding:0 !important}
+  body.print-formulario .formulario-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  body.print-formulario .fcard{padding:9px 12px}
+  body.print-formulario .fcard li{font-size:10.5px;padding:3px 0}
+  body.print-formulario .section-head h2{font-size:30px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+<style id="views-css">
+.view{display:none}
+.view.active{display:block;animation:viewIn .4s ease}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.home-actions{display:flex;gap:14px;flex-wrap:wrap;padding:34px 64px 72px}
+.home-actions .btn{text-decoration:none;display:inline-flex;align-items:center;font-size:11px;padding:14px 26px}
+#view-temas{padding:72px 64px 88px}
+.tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:8px}
+.tema-card{display:flex;flex-direction:column;gap:9px;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--panel);text-decoration:none;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s}
+.tema-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .25s}
+.tema-card:hover{border-color:var(--line-2);transform:translateY(-3px);box-shadow:0 12px 32px var(--shadow)}
+.tema-card:hover::before{transform:scaleY(1)}
+.tc-num{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:0.12em}
+.tc-title{font-family:var(--font-display);font-weight:700;font-size:21px;color:var(--ink);letter-spacing:-0.02em;line-height:1.1}
+.tc-blurb{font-size:13.5px;color:var(--ink-2);line-height:1.45;flex:1}
+.tc-foot{display:flex;align-items:center;gap:12px;margin-top:8px}
+.tc-bar{flex:1;height:4px;background:var(--bg-sunk);border-radius:99px;overflow:hidden}
+.tc-bar>span{display:block;height:100%;background:var(--accent);transition:width .4s}
+.tc-go{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);white-space:nowrap}
+.tema-card:hover .tc-go{color:var(--accent)}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-3);text-decoration:none;margin-bottom:24px;transition:color .2s}
+.back-link:hover{color:var(--accent)}
+.figure{margin:8px 0 30px;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px}
+.figure svg{display:block;width:100%;height:auto;max-width:600px;margin:0 auto;overflow:visible}
+.figure figcaption,.figure>div:last-child{font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;margin-top:16px;text-align:center;line-height:1.5}
+.figure text{font-family:var(--font-mono);fill:var(--ink-3);font-size:12px}
+.figure .t-ink{fill:var(--ink);font-weight:500}
+.figure .t-acc{fill:var(--accent);font-weight:500}
+.fig-axis{stroke:var(--line-2);stroke-width:1.2;fill:none}
+.fig-line{stroke:var(--ink-3);stroke-width:2;fill:none}
+.fig-acc{stroke:var(--accent);stroke-width:2.5;fill:none;stroke-linecap:round}
+.fig-accf{fill:var(--accent)}
+.fig-dash{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:4 3;fill:none}
+.fig-cell{stroke:var(--ink-2);stroke-width:1.6;fill:none}
+.fig-atom{fill:var(--accent);stroke:var(--panel);stroke-width:2}
+@media(max-width:1100px){
+  .home-actions{padding:24px 28px 40px}
+  #view-temas{padding:40px 28px 56px}
+}
+</style>
+<style>
+.q-main{min-width:0}
+.q-badge{display:inline-block;font-family:var(--font-mono);font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;padding:3px 9px;border:1px solid var(--line);border-radius:20px;color:var(--ink-3);margin-bottom:12px}
+.q-badge.q-num,.q-badge.q-vf{color:var(--accent);border-color:var(--accent)}
+.q-badge.q-multi,.q-badge.q-order{color:var(--ink-2);border-color:var(--ink-2)}
+.q-badge.q-caso{color:#5a7d6b;border-color:#5a7d6b}
+.q-badge.q-neg{color:var(--bad);border-color:var(--bad)}
+.quiz-options.multi label.sel{border-color:var(--accent);background:var(--bg-soft);color:var(--ink)}
+.quiz-options.multi label.sel .key{color:var(--accent)}
+.quiz-options label.missed{background:var(--ok-bg);border-color:var(--ok);border-style:dashed}
+.quiz-options label.missed::after{content:'\2713 faltaba';font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);font-weight:600}
+.check-btn{margin-top:14px;font-family:var(--font-mono);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;padding:9px 18px;border:1px solid var(--ink-2);background:transparent;color:var(--ink);cursor:pointer;border-radius:8px;transition:background .18s,color .18s}
+.check-btn:hover{background:var(--ink);color:var(--bg)}
+.btn-link{background:none;border:none;color:var(--ink-3);font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;text-decoration:underline;padding:9px 6px}
+.quiz-num{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.num-input{font-family:var(--font-mono);font-size:15px;padding:10px 13px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:150px}
+.num-input:focus{outline:none;border-color:var(--accent)}
+.num-input.correct{border-color:var(--ok);background:var(--ok-bg)}
+.num-input.incorrect{border-color:var(--bad);background:var(--bad-bg)}
+.num-unit{font-family:var(--font-mono);font-size:13px;color:var(--ink-3)}
+.quiz-num .check-btn{margin-top:0}
+.order-pool,.order-seq{display:flex;flex-wrap:wrap;gap:8px;min-height:46px;padding:11px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px;background:var(--bg)}
+.order-pool{border-style:dashed}
+.order-seq{counter-reset:ord}
+.order-seq:empty::before{content:'Pulsa las opciones en el orden correcto \2193';color:var(--ink-3);font-style:italic;font-size:13px;font-family:var(--font-body)}
+.order-seq .chip::before{counter-increment:ord;content:counter(ord) '. ';color:var(--ink-3);font-family:var(--font-mono);font-size:11px}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:8px 13px;border:1px solid var(--line);border-radius:8px;background:var(--bg-soft);cursor:pointer;font-size:13.5px;color:var(--ink-2);transition:border-color .15s}
+.chip:hover{border-color:var(--line-2);color:var(--ink)}
+.chip.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.chip.incorrect{background:var(--bad-bg);border-color:var(--bad);color:var(--ink)}
+.quiz-sol{display:none;margin-top:11px;padding:11px 16px;border:1px solid var(--accent);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--bg-soft);font-size:14px;font-weight:600;color:var(--ink);line-height:1.5}
+.quiz-sol.show{display:block}
+.quiz-sol b{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;font-weight:600}
+</style>
+</head>
+<body>
+<noscript><style>.view{display:block !important}</style></noscript>
+<div class="layout">
+<aside class="sidebar">
+  <div>
+    <p class="site-title">ADE <em>Trainer</em></p>
+    <div class="meta">Examen final · 29 Junio 2026</div>
+  </div>
+  <nav id="toc" aria-label="Navegación principal">
+    <a href="#home"><span class="num">◆</span>Inicio</a>
+    <a href="#temas"><span class="num">☰</span>Temas</a>
+    <a href="#simulacro"><span class="num">≡</span>Simulacro</a>
+    <a href="#formulario"><span class="num">ƒ</span>Formulario</a>
+  </nav>
+  <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+    <span class="tt-dot"></span><span class="tt-label">Modo claro</span>
+  </button>
+  <div class="progress-box">
+    <label>Progreso global</label>
+    <div class="progress-bar"><span id="progressBar" style="width:0%"></span></div>
+    <div class="progress-val" id="progressVal">0 %</div>
+  </div>
+</aside>
+
+<main>
+<section class="view active" id="view-home" data-route="home">
+<header class="masthead" id="top">
+  <div>
+    <div class="pubinfo"><span class="marker">●</span><span>Isla Aeroespacial</span><span class="spacer"></span><span>Examen final · toda la asignatura</span></div>
+    <h1 class="title">ADE<span class="accent-letter">.</span></h1>
+    <p class="subtitle">Los 12 temas de Administración de Empresas (UD 1-12): teoría comprimida, problemas resueltos paso a paso y autoevaluación tipo test. Pensado para el examen del 29 de junio.</p>
+  </div>
+  <div class="colophon">
+    <b>12 temas · 2 bloques</b>
+    Teórico: Empresa · Dirección · Estructura · Personas<br>
+    Cuantitativo: Riesgo · Técnicas · Finanzas<br>
+    Inversiones · Financiación · Producción · Marketing · Valoración
+  </div>
+</header>
+  <div class="home-actions">
+    <a class="btn btn-primary" href="#temas">Ver los 12 temas</a>
+    <a class="btn" href="#simulacro">Simulacro de examen</a>
+  </div>
+</section>
+<section class="view" id="view-temas" data-route="temas">
+  <div class="section-head">
+    <div class="label">Temario · Examen 29 jun 2026</div>
+    <h2>Los <em>12 temas</em></h2>
+    <div class="lede">Pulsa un tema para ver su teoría, sus problemas resueltos y su autoevaluación tipo test. El bloque cuantitativo (T5–T12) es donde se ganan más puntos.</div>
+  </div>
+  <div class="tema-grid" id="temaGrid"></div>
+</section>
+<section class="chapter view" id="empresa" data-route="t/empresa">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 1 · Teoría</div><h2>La <em>empresa</em></h2></div>
+    <div class="lede">Economía y coste de oportunidad, la empresa como sistema, clases de empresas, el empresario, sistemas económicos y stakeholders.</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>Tema teórico.</b> Se estudia con repaso activo: lee el esquema una vez, tapa y recítalo. Cae como preguntas conceptuales tipo test.</div>
+
+<h3>1.1 Economía y empresa</h3>
+<ul>
+<li><b>Economía</b> = ciencia social que administra <b>recursos escasos</b> para necesidades <b>ilimitadas</b> → siempre hay que elegir = <b>coste de oportunidad</b>.</li>
+<li>Tres preguntas clave: <b>¿qué producir? ¿cómo? ¿para quién?</b></li>
+<li><b>Factores de producción:</b> recursos naturales · trabajo · bienes de capital · <b>iniciativa empresarial</b>.</li>
+<li><b>Agentes económicos:</b> familias (consumen y ofrecen trabajo) · empresas (producen) · sector público (regula y redistribuye) · sector exterior (importa/exporta).</li>
+</ul>
+
+<h3>1.2 La empresa como organización y como sistema</h3>
+<ul>
+<li><b>Organización — 4 elementos:</b> objetivo · dirección · elementos personales y materiales · <b>división del trabajo</b>.</li>
+<li><b>Empresa</b> = organización <b>con ánimo de lucro</b> (sin ánimo de lucro = fundaciones / asociaciones).</li>
+<li><b>Empresa como sistema:</b> abierto (inputs/outputs), con <b>sinergia</b>, busca el equilibrio; se descompone en subsistemas (dirección, financiero, producción, marketing, riesgo).</li>
+</ul>
+
+<h3>1.3 Clases de empresas</h3>
+<table>
+<tr><th>Criterio</th><th>Tipos</th></tr>
+<tr><td>Tamaño</td><td>micro / pequeña / mediana / grande (nº trabajadores, ventas, activos)</td></tr>
+<tr><td>Actividad</td><td><b>primario</b> (materias primas) / <b>secundario</b> (industria) / <b>terciario</b> (servicios)</td></tr>
+<tr><td>Ámbito</td><td>local, provincial, nacional, internacional (≠ multinacional = activos en varios países)</td></tr>
+<tr><td>Propiedad</td><td>privada / pública / mixta; <b>cooperativa</b> (trabajadores = dueños, es privada)</td></tr>
+</table>
+<div class="formula-box">Forma jurídica: autónomo (responde con todo su patrimonio) · <b>S.A.</b> (capital en <b>acciones</b> libremente transmisibles, mín. 60.000 €) · <b>S.L.</b> (capital en <b>participaciones</b>, transmisión restringida, mín. 3.000 €). Responsabilidad <b>limitada</b> a la aportación en S.A. y S.L.</div>
+<div class="warn"><b>Error clásico</b> Confundir acciones (S.A.) con participaciones (S.L.). En S.A. se transmiten libremente; en S.L. la transmisión está restringida.</div>
+
+<h3>1.4 El empresario y los sistemas económicos</h3>
+<ul>
+<li><b>Visiones del empresario:</b> Smith/Ricardo/Mill = arriesga capital · Marx = explota el trabajo · otros = asume la <b>incertidumbre</b> / su función es <b>innovar</b>.</li>
+<li><b>Emprendedor</b> = empresario inicial, innovador, asume riesgo y tiene la idea; con el tiempo se transforma en empresario o cede la dirección.</li>
+<li><b>Sistemas económicos:</b> <b>capitalismo</b> (propiedad privada, libre competencia) · <b>socialismo/centralizado</b> (propiedad estatal) · <b>mixto</b>.</li>
+<li><b>Mano invisible:</b> Adam Smith, <i>La riqueza de las naciones</i> (1776). <b>Coase</b> (Nobel 1991): la empresa reduce <b>costes de transacción</b>.</li>
+</ul>
+
+<h3>1.5 Grupos de interés (stakeholders) y RSC</h3>
+<ul>
+<li><b>Stakeholders (1984):</b> accionistas, directivos, empleados, proveedores, distribuidores, consumidores, comunidad, Estado, banca, patronal y sindicatos.</li>
+<li><b>RSC:</b> al ser sistema abierto la empresa tiene responsabilidad social; puede generar <b>costes sociales</b> (despidos, contaminación, agotamiento de recursos).</li>
+</ul>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-empresa"></div>
+  </div>
+</section>
+<section class="chapter view" id="direccion" data-route="t/direccion">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 2 · Teoría</div><h2>Dirección y <em>estrategia</em></h2></div>
+    <div class="lede">Niveles directivos, las 4 funciones, los 14 principios de Fayol, dirección estratégica (DAFO = Porter + PEST) y estrategias de crecimiento.</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>Tema teórico.</b> Claves de examen: las 4 funciones de la dirección, los 14 principios de Fayol, y el bloque DAFO (Porter + PEST).</div>
+
+<h3>2.1 Niveles directivos</h3>
+<table>
+<tr><th>Nivel</th><th>Horizonte</th><th>Qué hace</th></tr>
+<tr><td><b>Alta dirección</b></td><td>Largo plazo</td><td>Planes globales</td></tr>
+<tr><td><b>Dirección intermedia</b></td><td>Medio plazo</td><td>Desarrolla los planes</td></tr>
+<tr><td><b>Dirección operativa</b></td><td>Corto plazo</td><td>Contacto diario con trabajadores</td></tr>
+</table>
+<p><b>Cualidades del directivo:</b> técnicas · humanas · reflexivas.</p>
+
+<h3>2.2 Las 4 funciones de la dirección</h3>
+<div class="formula-box">Planificación → Organización → Gestión/dirección → Control</div>
+
+<h3>2.3 Los 14 principios de Fayol</h3>
+<p>División del trabajo · autoridad y responsabilidad · disciplina · <b>unidad de mando</b> · <b>unidad de dirección</b> · subordinación del interés individual al general · remuneración · centralización · jerarquía (cadena escalar) · orden · equidad · estabilidad del personal · iniciativa · espíritu de equipo.</p>
+<div class="warn"><b>Ojo</b> <b>Unidad de mando</b> = cada empleado recibe órdenes de un solo jefe. <b>Unidad de dirección</b> = un solo plan para un grupo de actividades con el mismo objetivo. No las confundas.</div>
+
+<h3>2.4 Dirección estratégica (proceso)</h3>
+<ol>
+<li>Definir <b>misión y objetivos</b>.</li>
+<li><b>Análisis interno</b> → recursos (financieros, físicos, humanos, intangibles) → <b>fortalezas / debilidades</b>.</li>
+<li><b>Análisis externo:</b> entorno específico = <b>5 fuerzas de Porter</b> (competidores, entrantes, sustitutivos, poder de proveedores, poder de clientes); entorno genérico = <b>análisis PEST</b> (Político-legal, Económico, Sociocultural, Tecnológico) → <b>oportunidades / amenazas</b>.</li>
+<li><b>Formular estrategias:</b> liderazgo en <b>costes</b> · <b>diferenciación</b> · <b>nichos/segmentos</b>.</li>
+<li>Implementar. 6. Evaluar / controlar.</li>
+</ol>
+<div class="formula-box"><b>DAFO</b> = (interno) Debilidades + Fortalezas + (externo) Amenazas + Oportunidades. Porter y PEST aportan las O y A; el análisis interno aporta las D y F.</div>
+
+<h3>2.5 Estrategias de crecimiento (corporativas)</h3>
+<ul>
+<li>Especializar vs <b>diversificar</b>.</li>
+<li>Crecimiento <b>interno</b> (aumentar patrimonio propio) vs <b>externo</b> (adquirir otra empresa).</li>
+<li><b>Competir vs cooperar</b> (alianzas).</li>
+<li>Internacionalizarse vs limitarse al mercado nacional.</li>
+</ul>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-direccion"></div>
+  </div>
+</section>
+<section class="chapter view" id="estructura" data-route="t/estructura">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 3 · Teoría</div><h2>Estructura y <em>organización</em></h2></div>
+    <div class="lede">Mecanismos de coordinación, elementos del diseño, mecanicista vs orgánica, los 4 tipos de estructura y la comunicación.</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>Tema teórico.</b> Lo más preguntable: los 3 mecanismos de coordinación, mecanicista vs orgánica y los 4 tipos de estructura.</div>
+
+<h3>3.1 Mecanismos de coordinación</h3>
+<ul>
+<li><b>Adaptación mutua</b> — entre iguales (comunicación informal).</li>
+<li><b>Supervisión directa</b> — un jefe coordina.</li>
+<li><b>Normalización / estandarización</b> — reglas y procedimientos.</li>
+</ul>
+
+<h3>3.2 Elementos del diseño organizativo</h3>
+<p>Especialización del trabajo · departamentalización · autoridad y responsabilidad · <b>límite de control</b> (nº máx. de personas que dirige un jefe) · centralización / descentralización · <b>formalización</b> (grado de reglas).</p>
+
+<h3>3.3 Mecanicista vs orgánica</h3>
+<table>
+<tr><th></th><th>Mecanicista</th><th>Orgánica</th></tr>
+<tr><td>Formalización</td><td>Muy formalizada</td><td>Poca formalización</td></tr>
+<tr><td>Decisión</td><td><b>Centralizada</b></td><td><b>Descentralizada</b></td></tr>
+<tr><td>Carácter</td><td>Compleja, rígida (producción en masa)</td><td>Flexible, creativa</td></tr>
+</table>
+
+<h3>3.4 Tipos de estructuras</h3>
+<table>
+<tr><th>Estructura</th><th>Característica</th></tr>
+<tr><td><b>En línea</b></td><td>Autoridad directa jefe→subordinado (cadena de mando); lenta, buena para empresa pequeña</td></tr>
+<tr><td><b>En línea y staff</b></td><td>Autoridad directa + órganos de <b>asesoramiento</b> (staff)</td></tr>
+<tr><td><b>En comité</b></td><td>Autoridad/responsabilidad compartida por un grupo; lenta, riesgo de conflicto</td></tr>
+<tr><td><b>Matricial</b></td><td>Doble autoridad (vertical funcional + horizontal por proyecto); para proyectos con expertos de varias áreas</td></tr>
+</table>
+<div class="warn"><b>Clave</b> La estructura <b>matricial</b> = doble dependencia (funcional + proyecto). Es la respuesta cuando el enunciado habla de "doble jefe" o "por proyectos".</div>
+
+<h3>3.5 Factores del diseño y comunicación</h3>
+<ul>
+<li><b>Factores:</b> entorno (cambiante → descentralizar) · estrategia · tecnología · cualificación de los RRHH.</li>
+<li><b>Empowerment</b> = dar poder de decisión al trabajador.</li>
+<li><b>Comunicación:</b> formal/informal, ascendente/descendente/horizontal. La <b>organización informal</b> = relaciones espontáneas no recogidas en el organigrama.</li>
+</ul>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-estructura"></div>
+  </div>
+</section>
+<section class="chapter view" id="personas" data-route="t/personas">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 4 · Teoría</div><h2>Dirección de <em>personas</em></h2></div>
+    <div class="lede">Proceso de RRHH, teorías de motivación (Maslow, Herzberg, McClelland), liderazgo y teoría X-Y de McGregor.</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>Tema teórico.</b> El corazón del tema son las teorías de motivación (Maslow, Herzberg, McClelland, McGregor X/Y).</div>
+
+<h3>4.1 Dirección de RRHH (proceso)</h3>
+<div class="formula-box">Planificación → <b>reclutamiento y selección</b> → orientación, formación y desarrollo → evaluación del trabajo → remuneración y promoción</div>
+
+<h3>4.2 Teorías de la motivación</h3>
+<table>
+<tr><th>Teoría</th><th>Idea central</th></tr>
+<tr><td><b>Maslow (1943)</b></td><td>Pirámide de necesidades: fisiológicas → seguridad → sociales → estima → autorrealización. Se busca siempre el siguiente nivel.</td></tr>
+<tr><td><b>Alderfer (ERG)</b></td><td>Existencia, Relación, Crecimiento (se puede descender de nivel).</td></tr>
+<tr><td><b>Herzberg (bifactorial)</b></td><td><b>Motivadores</b> (el trabajo en sí) vs factores de <b>higiene</b> (sueldo, entorno): la higiene no motiva, pero su ausencia desmotiva.</td></tr>
+<tr><td><b>McClelland</b></td><td>Necesidad de <b>logro</b>, de <b>afiliación</b> y de <b>poder</b>.</td></tr>
+</table>
+<div class="warn"><b>Trampa habitual</b> En Herzberg el <b>sueldo es factor de higiene</b>, no motivador. Pagar más evita el descontento pero no motiva por sí solo.</div>
+
+<h3>4.3 Liderazgo</h3>
+<ul>
+<li><b>Estilos:</b> autoritario · democrático · <i>laissez faire</i> (dejar hacer). No debe ser constante: depende de la situación.</li>
+<li><b>Teoría X e Y (McGregor, 1960):</b> el líder actúa según cómo ve a sus subordinados — <b>X</b> (vagos, hay que controlar) vs <b>Y</b> (responsables, hay que dar autonomía). El error es aplicar el estilo equivocado.</li>
+</ul>
+
+<h3>4.4 Cultura y conocimiento</h3>
+<p><b>Cultura empresarial</b> = valores y normas compartidos. <b>Gestión del conocimiento</b> = capturar y compartir el saber de la organización.</p>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-personas"></div>
+  </div>
+</section>
+<section class="chapter view" id="riesgo" data-route="t/riesgo">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 5 · Cuantitativo</div><h2>Riesgo y <em>decisiones</em></h2></div>
+    <div class="lede">Criterios en incertidumbre (Maximax, Wald, Laplace, Hurwicz, Savage), esperanza y varianza en riesgo, y análisis bayesiano.</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · alta prioridad.</b> Cae casi seguro un ejercicio de criterios de decisión, de esperanza/varianza o de Bayes. Practica con las manos.</div>
+
+<h3>5.1 Matriz de decisión</h3>
+<p>Alternativas (filas) A1–A3 frente a estados de la naturaleza (columnas) E1–E3. Valores = beneficios en €.</p>
+<table>
+<tr><th></th><th>E1</th><th>E2</th><th>E3</th></tr>
+<tr><td>A1</td><td>500</td><td>200</td><td>−100</td></tr>
+<tr><td>A2</td><td>300</td><td>300</td><td>100</td></tr>
+<tr><td>A3</td><td>400</td><td>250</td><td>50</td></tr>
+</table>
+
+<h3>5.2 Criterios en INCERTIDUMBRE (sin probabilidades)</h3>
+<table>
+<tr><th>Criterio</th><th>Regla</th></tr>
+<tr><td><b>Optimista (Maximax)</b></td><td>Mejor de cada fila → elige el mayor</td></tr>
+<tr><td><b>Pesimista (Wald / Maximin)</b></td><td>Peor de cada fila → elige el mejor de esos peores</td></tr>
+<tr><td><b>Laplace</b></td><td>Estados equiprobables → media de la fila → elige la mayor</td></tr>
+<tr><td><b>Hurwicz</b></td><td>$\alpha\cdot\text{máx} + (1-\alpha)\cdot\text{mín}$ → elige el mayor</td></tr>
+<tr><td><b>Savage</b></td><td>Matriz de arrepentimientos (mejor de la columna − valor) → minimiza el máximo arrepentimiento</td></tr>
+</table>
+
+<h3>5.3 Decisión en RIESGO (con probabilidades)</h3>
+<div class="formula-box">$$E = \sum x_i\,p_i \qquad \sigma^2 = \sum p_i\,(x_i - E)^2 \qquad \sigma = \sqrt{\sigma^2}$$</div>
+<p>El criterio de la <b>esperanza</b> elige la alternativa con mayor E. La <b>desviación típica</b> σ mide el riesgo: a mayor σ, más riesgo.</p>
+
+<h3>5.4 Análisis bayesiano</h3>
+<div class="formula-box">$$P(A\mid B) = \frac{P(B\mid A)\cdot P(A)}{P(B)} \qquad P(B)=\sum P(B\mid A_i)P(A_i)$$</div>
+
+<h3>5.5 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> Con la matriz de arriba aplica los 5 criterios de incertidumbre (Hurwicz con α=0,6).</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><b>Maximax:</b> máx fila → A1=500, A2=300, A3=400 → <b>A1 (500)</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><b>Wald:</b> mín fila → A1=−100, A2=100, A3=50 → mejor de los peores <b>A2 (100)</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><b>Laplace:</b> media → A1=200; A2=233,3; A3=233,3 → empate <b>A2/A3</b>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><b>Hurwicz (0,6):</b> A1=0,6·500+0,4·(−100)=260; A2=220; A3=0,6·400+0,4·50=260 → empate <b>A1/A3</b>.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><b>Savage:</b> mejores por columna 500/300/100. Máx arrepentimiento A1=200, A2=200, A3=100 → <b>A3</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Maximax A1 · Wald A2 · Laplace A2/A3 · Hurwicz A1/A3 · Savage A3</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Con P(E1)=0,5; P(E2)=0,3; P(E3)=0,2, halla la alternativa de mayor esperanza y el riesgo (σ) de esa alternativa.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">E(A1)=0,5·500+0,3·200+0,2·(−100)=<b>290</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">E(A2)=260 ; E(A3)=285 → mejor por esperanza <b>A1 (290)</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">σ²(A1)=0,5·(500−290)²+0,3·(200−290)²+0,2·(−100−290)² = 22.050+2.430+30.420 = 54.900.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">σ=√54.900 = <b>234,3 €</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> A1, con E=290 € y σ=234,3 €</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> A priori P(Éxito)=0,4 y P(Fracaso)=0,6. Un estudio sale 'favorable' con P(Fav|Éxito)=0,8 y P(Fav|Fracaso)=0,3. Si sale favorable, ¿probabilidad de éxito?</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">P(Fav)=0,8·0,4 + 0,3·0,6 = 0,32 + 0,18 = <b>0,50</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">P(Éxito|Fav) = (0,8·0,4)/0,50 = 0,32/0,50 = <b>0,64</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> 64 % (la información sube la probabilidad del 40 % al 64 %)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4. (extra)</strong> Nueva matriz con mejores por columna 600/400/300 y P=0,4/0,35/0,25. Esperanza de A1 = 600/300/100 y su σ.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">E(A1)=0,4·600+0,35·300+0,25·100 = 240+105+25 = <b>370</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">σ²=0,4·(230)²+0,35·(−70)²+0,25·(−270)² = 21.160+1.715+18.225 = 41.100.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">σ=√41.100 = <b>202,73 €</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> E(A1)=370 € ; σ=202,7 €</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-riesgo"></div>
+  </div>
+</section>
+<section class="chapter view" id="tecnicas" data-route="t/tecnicas">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 6 · Cuantitativo</div><h2>Técnicas <em>instrumentales</em></h2></div>
+    <div class="lede">Árboles de decisión, valor esperado de la información perfecta, programación lineal gráfica y método PERT (camino crítico y holguras).</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · alta prioridad.</b> Suele caer un árbol de decisión, un PERT (camino crítico) o una programación lineal gráfica.</div>
+
+<h3>6.1 Árbol de decisión</h3>
+<p>En los <b>nodos de azar</b> (○) se calcula el valor esperado: $VE=\sum p_i\cdot x_i$. En los <b>nodos de decisión</b> (□) se elige la rama con mayor VE.</p>
+
+<h3>6.2 Valor Esperado de la Información Perfecta (VEIP)</h3>
+<div class="formula-box">$$\text{VEIP} = VE_{\text{con info perfecta}} - VE_{\text{mejor sin info}}$$</div>
+<p>$VE_{\text{con info perfecta}}$ = para cada estado eliges la mejor alternativa, ponderado por su probabilidad. Es lo máximo que conviene pagar por un estudio que predijese el estado con certeza.</p>
+
+<h3>6.3 Programación lineal (método gráfico)</h3>
+<ol>
+<li>Dibuja las restricciones y delimita la <b>región factible</b>.</li>
+<li>Calcula los <b>vértices</b> (cortes de las rectas).</li>
+<li>Evalúa la función objetivo Z en cada vértice → el óptimo está en un vértice.</li>
+</ol>
+
+<h3>6.4 Método PERT (camino crítico)</h3>
+<div class="formula-box">Ida (early): $EF = ES + duración$, $ES = \max(EF$ de precedentes$)$. <br>Vuelta (last): $LS = LF - duración$, $LF = \min(LS$ de siguientes$)$. <br><b>Holgura</b> $= LS - ES = LF - EF$. <b>Camino crítico</b> = actividades con holgura 0 (ruta más larga).</div>
+
+<h3>6.5 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> Planta Grande o Pequeña; demanda Alta (0,6) o Baja (0,4). Grande: 200/−40. Pequeña: 100/60. ¿Qué construir?</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">VE(Grande)=0,6·200+0,4·(−40)=120−16 = <b>104</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">VE(Pequeña)=0,6·100+0,4·60=60+24 = 84.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">En el nodo de decisión se elige el mayor.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Construir Grande (VE = 104)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Con la matriz de T5 (P=0,5/0,3/0,2, mejor sin info = 290), calcula el VEIP.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Mejores por estado: E1→500 (A1), E2→300 (A2), E3→100 (A2).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">VE con info perfecta = 0,5·500+0,3·300+0,2·100 = 250+90+20 = <b>360</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">VEIP = 360 − 290 = <b>70 €</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> VEIP = 70 € (máximo a pagar por el estudio)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Maximizar $Z=40x+30y$ sujeto a $2x+y\le100$, $x+y\le80$, $x,y\ge0$.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Vértices: (0,0)→0 ; (50,0)→2.000 ; (0,80)→2.400.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Corte 2x+y=100 ∩ x+y=80 → restando: x=20, y=60.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Z(20,60)=40·20+30·60 = 800+1.800 = <b>2.600</b> ← óptimo.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> x=20, y=60, Z máx = 2.600 €</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4.</strong> PERT: A(3,—), B(4,—), C(2,A), D(5,A·B), E(3,C·D). Halla duración y camino crítico.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Ida: A[0,3], B[0,4], C[3,5], D[4,9], E[9,12] → <b>duración 12</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Vuelta/holguras: A=1, B=0, C=4, D=0, E=0.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Holgura 0 → camino crítico B→D→E (4+5+3=12).</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Duración 12 días; camino crítico B → D → E</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-tecnicas"></div>
+  </div>
+</section>
+<section class="chapter view" id="financieras" data-route="t/financieras">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 7 · Cuantitativo</div><h2>Decisiones <em>financieras</em></h2></div>
+    <div class="lede">Balance (Activo = PN + Pasivo), fondo de maniobra, ROA y ROE, ratios de liquidez/endeudamiento/garantía y periodo medio de maduración.</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · alta prioridad.</b> Fondo de maniobra, ROA/ROE y ratios son casi seguros. El balance siempre cuadra: <b>Activo = PN + Pasivo</b>.</div>
+
+<h3>7.1 El balance</h3>
+<table>
+<tr><th>ACTIVO</th><th>€</th><th>PN + PASIVO</th><th>€</th></tr>
+<tr><td>Activo no corriente</td><td>60.000</td><td>Patrimonio Neto</td><td>50.000</td></tr>
+<tr><td>Activo corriente</td><td>40.000</td><td>Pasivo no corriente</td><td>30.000</td></tr>
+<tr><td></td><td></td><td>Pasivo corriente</td><td>20.000</td></tr>
+<tr><td><b>TOTAL</b></td><td><b>100.000</b></td><td><b>TOTAL</b></td><td><b>100.000</b></td></tr>
+</table>
+<p>Datos de resultados: BAII = 15.000 € ; Beneficio neto = 8.000 €.</p>
+
+<h3>7.2 Fórmulas clave</h3>
+<div class="formula-box">$$FM = AC - PC = \text{Recursos permanentes} - ANC$$ $$ROA = \frac{BAII}{\text{Activo total}} \qquad ROE = \frac{\text{Bº neto}}{PN}$$</div>
+<ul>
+<li><b>Fondo de maniobra (FM):</b> si FM > 0 → <b>equilibrio financiero</b> (puede pagar las deudas a corto). FM < 0 → riesgo de suspensión de pagos.</li>
+<li><b>ROA</b> (rentabilidad económica): rendimiento del activo, independiente de cómo se financie.</li>
+<li><b>ROE</b> (rentabilidad financiera): rentabilidad para el accionista. Si ROE > ROA → el <b>apalancamiento</b> de la deuda beneficia al accionista.</li>
+</ul>
+
+<h3>7.3 Ratios y periodo medio de maduración</h3>
+<table>
+<tr><th>Ratio</th><th>Fórmula</th><th>Sano si…</th></tr>
+<tr><td>Liquidez</td><td>AC / PC</td><td>> 1,5</td></tr>
+<tr><td>Endeudamiento</td><td>Pasivo total / PN</td><td>≈ 1 (equilibrio)</td></tr>
+<tr><td>Garantía</td><td>Activo / Pasivo total</td><td>> 1 (solvente)</td></tr>
+</table>
+<div class="formula-box"><b>PMM económico</b> = aprovisionamiento + fabricación + venta + cobro (días). <b>PMM financiero</b> = PMM económico − periodo de pago a proveedores.</div>
+
+<h3>7.4 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> Con el balance de arriba, calcula el fondo de maniobra y comprueba por arriba.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">FM = AC − PC = 40.000 − 20.000 = <b>20.000 €</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Comprobación = recursos permanentes (50.000+30.000) − ANC 60.000 = 20.000 ✓.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">FM > 0 → equilibrio financiero.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> FM = 20.000 € (equilibrio financiero)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Con BAII=15.000 y Bº neto=8.000, halla ROA y ROE e interprétalos.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">ROA = 15.000 / 100.000 = <b>15 %</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">ROE = 8.000 / 50.000 = <b>16 %</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">ROE (16 %) > ROA (15 %) → apalancamiento positivo: la deuda beneficia al accionista.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> ROA = 15 % · ROE = 16 % · apalancamiento positivo</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Calcula liquidez, endeudamiento y garantía (Pasivo total = 50.000).</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Liquidez = AC/PC = 40.000/20.000 = <b>2</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Endeudamiento = Pasivo/PN = 50.000/50.000 = <b>1</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Garantía = Activo/Pasivo = 100.000/50.000 = <b>2</b> → solvente.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Liquidez 2 · Endeudamiento 1 · Garantía 2</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4.</strong> Subperiodos: aprovision. 30, fabricación 10, venta 20, cobro 40; pago a proveedores 50 días. PMM económico y financiero.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">PMM económico = 30+10+20+40 = <b>100 días</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">PMM financiero = 100 − 50 = <b>50 días</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Son los días que la empresa financia por sí misma.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> PMM económico 100 días · financiero 50 días</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-financieras"></div>
+  </div>
+</section>
+<section class="chapter view" id="inversiones" data-route="t/inversiones">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 8 · Cuantitativo</div><h2>Selección de <em>inversiones</em></h2></div>
+    <div class="lede">Variables de la inversión, métodos estáticos y dinámicos, y cálculo de VAN, TIR y payback con sus reglas de decisión.</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · MÁXIMA prioridad.</b> VAN y TIR caen casi siempre. Nunca recortes este tema en el repaso.</div>
+
+<h3>8.1 Variables de una inversión</h3>
+<p>Desembolso inicial $D_0$ · flujos netos de caja $F_t$ · duración · valor residual · coste del capital $k$.</p>
+
+<h3>8.2 Métodos</h3>
+<div class="formula-box">$$VAN = -D_0 + \sum_{t=1}^{n}\frac{F_t}{(1+k)^t}$$ TIR = el tipo $r$ que hace $VAN=0$. <br>Payback = años hasta recuperar $D_0$ (suma de flujos).</div>
+<table>
+<tr><th>Tipo</th><th>Métodos</th><th>¿Descuenta?</th></tr>
+<tr><td><b>Estáticos</b></td><td>Payback simple, flujo neto total</td><td>No (solo orientativos)</td></tr>
+<tr><td><b>Dinámicos</b></td><td>VAN, TIR, payback descontado</td><td>Sí (criterio principal)</td></tr>
+</table>
+<div class="note"><b>Reglas de decisión</b> Se acepta si <b>VAN > 0</b> o equivalentemente <b>TIR > k</b>. Al ordenar proyectos alternativos, si VAN y TIR discrepan, <b>prevalece el VAN</b>.</div>
+
+<h3>8.3 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> $D_0=10.000$ ; flujos 4.000 / 5.000 / 4.000 ; k=10 %. Calcula el VAN.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Año 1: 4.000/1,1 = 3.636,36.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Año 2: 5.000/1,21 = 4.132,23.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Año 3: 4.000/1,331 = 3.005,26.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">VAN = −10.000 + 10.773,85 = <b>+773,85 €</b> → se acepta (VAN > 0).</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> VAN = +773,85 € → proyecto aceptado</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Mismo proyecto: estima la TIR por interpolación.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">A r=14 % → VAN ≈ +56 € ; a r=15 % → VAN ≈ −111 €.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">TIR ≈ 14 % + 56/(56+111) ≈ <b>14,3 %</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">TIR (14,3 %) > k (10 %) → coherente con el VAN, se acepta.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> TIR ≈ 14,3 % > 10 % → aceptado</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Mismo proyecto: calcula el payback simple.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Acumulado: año 1 = 4.000 ; año 2 = 9.000.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Al final del año 2 faltan 10.000 − 9.000 = 1.000 €.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">1.000/4.000 = 0,25 años dentro del año 3.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">Payback = <b>2,25 años</b> (2 años y 3 meses).</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Payback = 2,25 años</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4. (extra)</strong> $D_0=11.000$ ; flujos 5.000 / 6.000 / 4.000 ; k=8 %. Calcula el VAN.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">5.000/1,08 = 4.629,63 ; 6.000/1,1664 = 5.144,03 ; 4.000/1,259712 = 3.175,33.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Suma = 12.948,99.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">VAN = −11.000 + 12.948,99 = <b>+948,99 €</b> → se acepta.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> VAN = +948,99 € (TIR ≈ 12,5 %)</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-inversiones"></div>
+  </div>
+</section>
+<section class="chapter view" id="financiacion" data-route="t/financiacion">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 9 · Cuantitativo</div><h2>Fuentes de <em>financiación</em></h2></div>
+    <div class="lede">Clasificación de las fuentes, TIN frente a TAE, coste efectivo de un préstamo con comisión y coste medio ponderado (WACC).</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>Tema corto pero cuantitativo.</b> Lo importante: distinguir TIN de TAE y calcular el coste efectivo de un préstamo.</div>
+
+<h3>9.1 Clasificación de las fuentes</h3>
+<ul>
+<li><b>Según propiedad:</b> propias (capital, reservas) / ajenas (préstamos, proveedores).</li>
+<li><b>Según origen:</b> internas o <b>autofinanciación</b> (reservas, amortizaciones) / externas (ampliación de capital, deuda).</li>
+<li><b>Según plazo:</b> corto plazo (proveedores, crédito) / largo plazo (préstamos, empréstitos, leasing).</li>
+</ul>
+
+<h3>9.2 TIN vs TAE</h3>
+<div class="formula-box">$$\text{TAE} = \left(1 + \frac{\text{TIN}}{m}\right)^{m} - 1$$ donde $m$ = nº de pagos al año.</div>
+<p>El <b>TIN</b> es nominal (no tiene en cuenta la frecuencia de pago ni comisiones). La <b>TAE</b> incorpora la capitalización (y comisiones) → es el coste real comparable. Por eso <b>TAE ≥ TIN</b> cuando hay pagos intermedios.</p>
+
+<h3>9.3 Coste medio ponderado del capital (WACC)</h3>
+<div class="formula-box">$$\text{WACC} = w_{propios}\cdot k_{propios} + w_{deuda}\cdot k_{deuda}$$</div>
+<p>Cualquier inversión debe rendir por encima del WACC para crear valor (es el $k$ del VAN de T8).</p>
+
+<h3>9.4 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> Préstamo con TIN del 12 % anual y pagos mensuales. ¿Cuál es la TAE?</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Tipo mensual = 12 %/12 = 1 %.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">TAE = (1+0,01)¹² − 1 = 1,1268 − 1 = <b>12,68 %</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> TAE = 12,68 %</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Préstamo de 10.000 € a 1 año, TIN 6 % (al vencimiento), comisión de apertura 1 %. Coste efectivo.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Recibes 10.000 − 100 = 9.900 €.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Devuelves 10.000 + 600 = 10.600 €.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Coste = 10.600/9.900 − 1 = <b>7,07 %</b> TAE.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> 7,07 % (la comisión sube el coste real)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Financiación 60 % propios (10 %) y 40 % deuda (5 % tras impuestos). WACC.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">WACC = 0,6·10 % + 0,4·5 %.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">= 6 % + 2 % = <b>8 %</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> WACC = 8 %</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4. (extra)</strong> Préstamo de 8.000 €, TIN 5 % (al vencimiento), comisión 1,5 %. Coste efectivo.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Recibes 8.000 − 120 = 7.880 €.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Devuelves 8.000 + 400 = 8.400 €.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Coste = 8.400/7.880 − 1 = <b>6,60 %</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> 6,60 %</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-financiacion"></div>
+  </div>
+</section>
+<section class="chapter view" id="produccion" data-route="t/produccion">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 10 · Cuantitativo</div><h2><em>Producción</em></h2></div>
+    <div class="lede">Costes (CF, CV, CT, CMe, CMg), punto muerto / umbral de rentabilidad, beneficio para un volumen dado, productividad y decisión producir o comprar.</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · MÁXIMA prioridad.</b> El punto muerto cae casi siempre. Domina también el cálculo de beneficios y la decisión producir/comprar.</div>
+
+<h3>10.1 Costes</h3>
+<div class="formula-box">$$CT = CF + CV = CF + CV_u\cdot Q \qquad CMe = \frac{CT}{Q} \qquad CMg = \frac{\Delta CT}{\Delta Q}$$</div>
+
+<h3>10.2 Punto muerto (umbral de rentabilidad)</h3>
+<div class="formula-box">$$Q^* = \frac{CF}{P - CV_u}$$</div>
+<p>El denominador $P-CV_u$ es el <b>margen de contribución unitario</b> (lo que aporta cada unidad a cubrir los fijos). En $Q^*$ el beneficio es 0.</p>
+<div class="formula-box">$$B = \text{Ingresos} - CT = P\cdot Q - (CF + CV_u\cdot Q) = \text{margen}\cdot(Q - Q^*)$$</div>
+
+<h3>10.3 Productividad y producir o comprar</h3>
+<ul>
+<li><b>Productividad</b> = Producción / Factores empleados.</li>
+<li><b>Producir o comprar:</b> compara el coste de fabricar $(CF + CV_u\cdot Q)$ con el de comprar fuera $(P_{compra}\cdot Q)$. El <b>punto de indiferencia</b> iguala ambos.</li>
+</ul>
+
+<h3>10.4 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> CF=20.000 € ; P=50 €/u ; CVu=30 €/u. Calcula el punto muerto.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Q* = CF/(P−CVu) = 20.000/(50−30) = 20.000/20 = <b>1.000 uds</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Comprobación: ingresos 50·1.000 = 50.000 = CT (20.000+30.000) → B=0 ✓.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Margen de contribución unitario = P−CVu = 20 €/u.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Q* = 1.000 unidades</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> Mismos datos. Beneficio para Q = 1.500 unidades.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">B = P·Q − (CF + CVu·Q) = 50·1.500 − (20.000 + 30·1.500).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">= 75.000 − 65.000 = <b>10.000 €</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Atajo: margen·(Q−Q*) = 20·(1.500−1.000) = 10.000 ✓.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> B = 10.000 €</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> En Q = 1.500, calcula CT, CMe y CMg.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">CT = 20.000 + 30·1.500 = <b>65.000 €</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">CMe = 65.000/1.500 = <b>43,33 €/u</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">CMg = ΔCT/ΔQ = CVu = <b>30 €/u</b> (constante aquí).</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> CT 65.000 · CMe 43,33 · CMg 30 €/u</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4.</strong> Comprar a un proveedor cuesta 42 €/u. ¿Conviene fabricar o comprar, y a partir de qué volumen?</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Punto de indiferencia: 20.000 + 30Q = 42Q → 20.000 = 12Q → Q = <b>1.667 uds</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Por encima de 1.667 → fabricar; por debajo → comprar.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">En Q=1.500: fabricar 65.000 vs comprar 63.000 → conviene <b>comprar</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Indiferencia en 1.667 uds; en Q=1.500 conviene comprar</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-produccion"></div>
+  </div>
+</section>
+<section class="chapter view" id="marketing" data-route="t/marketing">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 11 · Cuantitativo</div><h2><em>Marketing</em></h2></div>
+    <div class="lede">Las 4 P, elasticidad-precio, renta y cruzada de la demanda, y previsión de ventas por regresión lineal simple.</div>
+  </div>
+  <div class="content-body">
+
+<div class="warn"><b>Tema cuantitativo · alta prioridad.</b> Las elasticidades y la regresión lineal simple son lo que se calcula. El resto (4 P, mercados) es teoría.</div>
+
+<h3>11.1 Marketing mix (teoría)</h3>
+<p>Las <b>4 P</b>: Producto · Precio · Plaza (distribución) · Promoción.</p>
+
+<h3>11.2 Elasticidades de la demanda</h3>
+<div class="formula-box">$$E_p = \frac{\%\Delta Q}{\%\Delta P}\qquad E_r = \frac{\%\Delta Q}{\%\Delta R}\qquad E_{xy} = \frac{\%\Delta Q_x}{\%\Delta P_y}$$</div>
+<table>
+<tr><th>Elasticidad</th><th>Valor</th><th>Interpretación</th></tr>
+<tr><td rowspan="3">Precio $E_p$</td><td>|Ep| > 1</td><td><b>Elástica</b> (bajar precio sube ingresos)</td></tr>
+<tr><td>|Ep| = 1</td><td><b>Unitaria</b> (ingreso máximo)</td></tr>
+<tr><td>|Ep| < 1</td><td><b>Inelástica</b> (subir precio sube ingresos)</td></tr>
+<tr><td rowspan="2">Renta $E_r$</td><td>Er > 0</td><td>Bien <b>normal</b> (< 1 primera necesidad, > 1 de lujo)</td></tr>
+<tr><td>Er < 0</td><td>Bien <b>inferior</b></td></tr>
+<tr><td rowspan="2">Cruzada $E_{xy}$</td><td>+</td><td>Bienes <b>sustitutivos</b></td></tr>
+<tr><td>−</td><td>Bienes <b>complementarios</b></td></tr>
+</table>
+
+<h3>11.3 Previsión de demanda — regresión lineal simple</h3>
+<div class="formula-box">$$Y = a + bX \qquad b = \frac{n\sum XY - \sum X\sum Y}{n\sum X^2 - (\sum X)^2}\qquad a = \frac{\sum Y - b\sum X}{n}$$</div>
+<p>Modelo <b>explicativo</b> (X explica Y). Distinto del modelo de <b>extrapolación</b>, que solo proyecta la tendencia temporal pasada.</p>
+
+<h3>11.4 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> El precio sube de 10 € a 12 € y la cantidad baja de 100 a 80 uds. Elasticidad-precio.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">%ΔP = (12−10)/10 = +20 %.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">%ΔQ = (80−100)/100 = −20 %.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Ep = −20/20 = <b>−1</b> → elasticidad <b>unitaria</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Ep = −1 (unitaria)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> La renta sube 10 % y la demanda 5 %. El precio de Y sube 10 % y la demanda de X sube 8 %. Interpreta Er y Exy.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Er = 5/10 = <b>+0,5</b> → bien normal de primera necesidad (0<Er<1).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Exy = 8/10 = <b>+0,8</b> → signo positivo → bienes <b>sustitutivos</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Er = +0,5 (normal) · Exy = +0,8 (sustitutivos)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Datos (X,Y): (1,2),(2,3),(3,5),(4,6). Halla la recta de regresión y prevé Y para X=5.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">ΣX=10, ΣY=16, ΣXY=47, ΣX²=30, n=4.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">b = (4·47 − 10·16)/(4·30 − 100) = 28/20 = <b>1,4</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">a = (16 − 1,4·10)/4 = 2/4 = <b>0,5</b>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">Recta Y = 0,5 + 1,4X → para X=5: Y = <b>7,5</b>.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Y = 0,5 + 1,4X ; previsión 7,5 (miles €)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P4. (extra)</strong> El precio sube 25 % y la cantidad baja 20 %. ¿Elástica o inelástica?</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Ep = −20/25 = <b>−0,8</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">|Ep| < 1 → demanda <b>inelástica</b> (conviene subir el precio para más ingresos).</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Ep = −0,8 (inelástica)</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-marketing"></div>
+  </div>
+</section>
+<section class="chapter view" id="valoracion" data-route="t/valoracion">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Tema 12 · Complementos</div><h2>Riesgo y <em>valoración</em></h2></div>
+    <div class="lede">Tipos de riesgo, apalancamiento operativo, financiero y total, insolvencia (ICR), presupuesto de tesorería y valoración de empresas (liquidación vs funcionamiento).</div>
+  </div>
+  <div class="content-body">
+
+<div class="note"><b>UD 12 · Complementos.</b> Tema final que une riesgo y valoración. Entra en el examen (UD 1-12). Cae como teoría: tipos de apalancamiento, insolvencia y, sobre todo, los dos enfoques de valoración (liquidación vs funcionamiento).</div>
+
+<h3>12.1 Tipos de riesgo</h3>
+<ul>
+<li>La mayor incertidumbre de una empresa es <b>prever las ventas</b>: si caen las ventas, cae el beneficio y, con él, el valor de la empresa.</li>
+<li><b>Riesgo económico / operativo</b> → ligado a la estructura de <b>costes fijos</b>. <b>Riesgo financiero</b> → ligado al <b>endeudamiento</b>.</li>
+</ul>
+
+<h3>12.2 Apalancamiento operativo (GAO)</h3>
+<ul>
+<li>Mide el peso de los <b>costes fijos</b> en la estructura de costes. A más CF, mayor GAO.</li>
+<li>Alto GAO = un pequeño cambio en las ventas provoca un <b>gran cambio en el beneficio operativo (EBIT)</b>.</li>
+<li><b>EBIT</b> = resultado de explotación, antes de intereses e impuestos.</li>
+</ul>
+
+<h3>12.3 Apalancamiento financiero (GAF) y total</h3>
+<ul>
+<li>Mide el uso de <b>deuda</b>. Alto GAF = un pequeño cambio en el EBIT provoca un gran cambio en el <b>beneficio neto</b>.</li>
+<li>La deuda <b>eleva el ROE</b> (rentabilidad del accionista) si el ROA supera el coste de la deuda — a costa de más riesgo.</li>
+</ul>
+<div class="formula-box"><b>Apalancamiento total</b> = GAO × GAF. Orientación: 1–3 bajo/moderado · &gt;4 alto · &gt;6 muy alto.</div>
+<div class="warn"><b>Ojo</b> El <b>ROA</b> (rentabilidad operativa) no cambia al endeudarse; el <b>ROE</b> sí sube (apalancamiento positivo si ROA &gt; coste de la deuda).</div>
+
+<h3>12.4 Limitaciones del análisis coste-volumen-beneficio</h3>
+<p>El punto muerto y los apalancamientos suponen <b>constantes</b> el coste variable unitario, el precio de venta y el coste fijo. Eso solo vale <b>a corto plazo</b>: a largo plazo todos pueden cambiar.</p>
+
+<h3>12.5 Probabilidad de insolvencia</h3>
+<ul>
+<li><b>Insolvencia técnica:</b> el beneficio operativo (BE) no cubre los <b>intereses</b> de la deuda (F). A más deuda, mayor probabilidad de insolvencia.</li>
+<li><b>ICR (ratio de cobertura de intereses)</b> = BE / intereses. Orientación: <b>1,5 malo · 2,5 bueno</b>.</li>
+</ul>
+
+<h3>12.6 Presupuesto de tesorería</h3>
+<div class="formula-box">Saldo inicial + Cobros previstos − Pagos previstos = <b>Saldo final de tesorería</b></div>
+<p>Anticipa el <b>riesgo de liquidez</b> (problemas de caja) para tomar decisiones a tiempo.</p>
+
+<h3>12.7 Valoración de empresas</h3>
+<p><b>Ordinaria</b> = día a día (compraventa, entrada/salida de socios, gestión interna). <b>Extraordinaria</b> = situaciones especiales (fusiones, liquidación, concurso de acreedores, indemnizaciones, expropiaciones).</p>
+<table>
+<tr><th></th><th>En liquidación</th><th>En funcionamiento (going concern)</th></tr>
+<tr><td>Supuesto</td><td>La empresa cierra y se venden los activos</td><td>La empresa sigue operando</td></tr>
+<tr><td>Qué mide</td><td><b>Valor sustancial / patrimonial</b>: activos+derechos (bruto), −deudas (neto)</td><td><b>Valor de rendimiento</b>: capacidad de generar beneficios futuros</td></tr>
+<tr><td>Fondo de comercio</td><td>No se incluye</td><td>Sí se incluye</td></tr>
+<tr><td>Métodos</td><td>Directo (útil con muchos activos fijos)</td><td>Proyección de flujos 3–10 años + valor residual/terminal; múltiplos (3×EBITDA, 5×Bº neto, 1×ventas)</td></tr>
+<tr><td>Resultado</td><td>Valor <b>más bajo</b></td><td>Valor <b>más alto</b></td></tr>
+</table>
+<div class="warn"><b>Fondo de comercio (goodwill)</b> = el valor <b>intangible</b> (marca, reputación, patentes, clientes, know-how) que hace que la empresa valga más que sus activos netos. Solo se recoge en la valoración en funcionamiento.</div>
+
+<h3>12.8 Problemas resueltos</h3>
+<details class="problem">
+  <summary><strong>P1.</strong> Presupuesto de tesorería: saldo inicial 2.000 €, cobros previstos 8.000 €, pagos previstos 8.100 €. Halla el saldo final.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Saldo final = 2.000 + 8.000 − 8.100 = <b>1.900 €</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Ha bajado 100 € respecto al inicio → señal de alerta de liquidez.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Saldo final = 1.900 € (el mes pierde 100 €)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P2.</strong> El beneficio operativo (BE) es 80.000 € y los intereses de la deuda 50.000 €. Calcula el ICR e interprétalo.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">ICR = BE / intereses = 80.000 / 50.000 = <b>1,6</b>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Está entre 1,5 (malo) y 2,5 (bueno) → cobertura justa, con riesgo.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> ICR = 1,6 (cobertura justa, riesgo moderado)</div>
+  </div>
+</details>
+<details class="problem">
+  <summary><strong>P3.</strong> Valoración en liquidación: activos + derechos = 120.000 €, deudas = 40.000 €. Halla el valor sustancial neto.</summary>
+  <div class="solution">
+    <div class="solution-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Valor bruto = activos + derechos = 120.000 €.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Valor neto = 120.000 − 40.000 = <b>80.000 €</b>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">No incluye el fondo de comercio → suele ser inferior al valor en funcionamiento.</div></div>
+    </div>
+    <div class="result"><b>Resultado:</b> Valor sustancial neto = 80.000 €</div>
+  </div>
+</details>
+
+<h3>Autoevaluación — tipo test</h3>
+<div class="quiz-container" id="quiz-valoracion"></div>
+  </div>
+</section>
+<section class="chapter view" id="simulacro" data-route="t/simulacro">
+  <a class="back-link" href="#temas">← Todos los temas</a>
+  <div class="section-head">
+    <div><div class="label">Simulacro · Modo examen real</div><h2>Simulacro <em>global</em></h2></div>
+    <div class="lede"><b>Réplica del examen real:</b> 20 preguntas tipo test (4 opciones, una correcta) de las UD 1-12, con la penalización oficial — <b>acierto +1, fallo −0,25</b> — y nota sobre 10. Sin explicaciones hasta terminar.</div>
+  </div>
+  <div class="content-body">
+    <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+      <button class="btn btn-rust" onclick="startSimulacro()">Iniciar simulacro (20 preguntas)</button>
+      <button class="btn" onclick="resetSimulacro()">Reiniciar</button>
+    </div>
+    <div class="quiz-container" id="quiz-simulacro"></div>
+    <div id="simulacro-summary" style="display:none;margin-top:32px;padding:32px;border:1px solid var(--hairline);background:var(--bg-1);text-align:center">
+      <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:var(--ink-faint);margin-bottom:12px">Nota del simulacro (formato examen)</div>
+      <div id="sim-score" style="font-family:var(--serif-display);font-size:clamp(64px,10vw,120px);font-weight:320;font-style:italic;color:var(--rust);line-height:1">0/10</div>
+      <div id="sim-verdict" style="font-family:var(--serif-display);font-style:italic;font-size:22px;color:var(--ink);margin-top:8px">—</div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+
+const bancos = {
+ 'quiz-empresa':[
+  {q:'El coste de oportunidad surge porque:',o:['los recursos son ilimitados','los recursos son escasos y hay que elegir','las empresas tienen ánimo de lucro','el Estado regula el mercado'],a:1,exp:'Recursos escasos para necesidades ilimitadas → elegir implica renunciar a la mejor alternativa.'},
+  {q:'¿Qué diferencia a una S.A. de una S.L.?',o:['La S.A. no tiene ánimo de lucro','El capital de la S.A. son acciones libremente transmisibles; el de la S.L. participaciones restringidas','La S.L. necesita 60.000 € mínimo','La S.A. responde con todo el patrimonio personal'],a:1,exp:'S.A.: acciones, transmisión libre, mín. 60.000 €. S.L.: participaciones, transmisión restringida, mín. 3.000 €.'},
+  {q:'Una cooperativa es una empresa:',o:['pública','privada cuyos trabajadores son los dueños','mixta','sin actividad económica'],a:1,exp:'Cooperativa = los trabajadores son propietarios; se clasifica como empresa privada.'},
+  {q:'¿Quién aportó la idea de "costes de transacción"?',o:['Adam Smith','Karl Marx','Ronald Coase','Maslow'],a:2,exp:'Coase (Nobel 1991): la empresa existe para reducir costes de transacción.'},
+  {q:'La empresa como sistema es:',o:['cerrado y sin sinergia','abierto, con sinergia y subsistemas','solo el subsistema financiero','un agente que solo consume'],a:1,exp:'Sistema abierto (inputs/outputs), con sinergia, dividido en subsistemas.'},
+  {q:'El sector secundario corresponde a:',o:['materias primas','industria/transformación','servicios','sector público'],a:1,exp:'Primario = materias primas, secundario = industria, terciario = servicios.'}
+ ],
+ 'quiz-direccion':[
+  {q:'Orden correcto de las 4 funciones de la dirección:',o:['Organizar→Planificar→Controlar→Gestionar','Planificar→Organizar→Gestionar→Controlar','Controlar→Gestionar→Organizar→Planificar','Gestionar→Controlar→Planificar→Organizar'],a:1,exp:'Planificación → Organización → Gestión/dirección → Control.'},
+  {q:'La unidad de mando (Fayol) significa:',o:['un solo plan por objetivo','cada empleado recibe órdenes de un solo jefe','centralizar todo','remunerar igual a todos'],a:1,exp:'Unidad de mando = un solo jefe por empleado. (Unidad de dirección = un plan por objetivo.)'},
+  {q:'Las 5 fuerzas de Porter analizan:',o:['el entorno genérico (PEST)','el entorno específico/sectorial','las fortalezas internas','la motivación'],a:1,exp:'Porter = entorno específico (competidores, entrantes, sustitutivos, proveedores, clientes).'},
+  {q:'El análisis PEST estudia factores:',o:['Político, Económico, Sociocultural, Tecnológico','Personas, Empresa, Sistema, Tiempo','Producto, Espacio, Servicio, Trabajo','Proveedores, Empleados, Socios, Trabajadores'],a:0,exp:'PEST = Político-legal, Económico, Sociocultural, Tecnológico (entorno genérico).'},
+  {q:'Crecimiento externo es:',o:['aumentar el patrimonio propio','adquirir o fusionarse con otra empresa','especializarse','reducir plantilla'],a:1,exp:'Externo = comprar/fusionar otra empresa. Interno = crecer con recursos propios.'},
+  {q:'En el DAFO, Porter y PEST aportan:',o:['Debilidades y Fortalezas','Oportunidades y Amenazas','solo Amenazas','solo Fortalezas'],a:1,exp:'El análisis externo (Porter+PEST) da Oportunidades y Amenazas; el interno da Debilidades y Fortalezas.'}
+ ],
+ 'quiz-estructura':[
+  {q:'¿Cuántos mecanismos de coordinación hay?',o:['Dos: jefe y empleado','Tres: adaptación mutua, supervisión directa, normalización','Cinco fuerzas','Cuatro funciones'],a:1,exp:'Adaptación mutua, supervisión directa y normalización/estandarización.'},
+  {q:'Una organización mecanicista es:',o:['descentralizada y flexible','muy formalizada y centralizada','sin reglas','siempre pequeña'],a:1,exp:'Mecanicista = formalizada, centralizada, rígida (producción en masa). Orgánica = flexible y descentralizada.'},
+  {q:'La estructura matricial se caracteriza por:',o:['un solo jefe','doble autoridad (funcional + por proyecto)','no tener jerarquía','ser solo de asesoramiento'],a:1,exp:'Matricial = doble dependencia, funcional y de proyecto.'},
+  {q:'El límite de control es:',o:['el grado de reglas escritas','el nº máximo de personas que dirige un jefe','la cadena de mando','el organigrama informal'],a:1,exp:'Límite (o ámbito) de control = nº de subordinados que un jefe puede dirigir.'},
+  {q:'La estructura en línea y staff añade a la cadena de mando:',o:['un comité que decide','órganos de asesoramiento (staff)','una segunda jerarquía por proyecto','la organización informal'],a:1,exp:'Línea + staff = autoridad directa más órganos de asesoramiento sin mando.'},
+  {q:'La organización informal es:',o:['el organigrama oficial','las relaciones espontáneas no recogidas en el organigrama','la normalización','la alta dirección'],a:1,exp:'Informal = relaciones espontáneas fuera del organigrama formal.'}
+ ],
+ 'quiz-personas':[
+  {q:'En la pirámide de Maslow, el nivel más alto es:',o:['fisiológicas','seguridad','autorrealización','sociales'],a:2,exp:'Orden: fisiológicas→seguridad→sociales→estima→autorrealización (la cima).'},
+  {q:'Según Herzberg, el sueldo es:',o:['un factor motivador','un factor de higiene','una necesidad de logro','un estilo de liderazgo'],a:1,exp:'El sueldo es factor de higiene: su ausencia desmotiva, pero no motiva por sí solo.'},
+  {q:'McClelland identifica las necesidades de:',o:['logro, afiliación y poder','existencia, relación, crecimiento','seguridad y estima','X e Y'],a:0,exp:'McClelland: logro, afiliación y poder.'},
+  {q:'En la teoría X-Y de McGregor, un líder "Y" cree que el trabajador:',o:['es vago y hay que controlarlo','es responsable y se le debe dar autonomía','solo responde al dinero','no necesita motivación'],a:1,exp:'Y = trabajador responsable (autonomía). X = vago (control).'},
+  {q:'El modelo ERG (Alderfer) permite, frente a Maslow:',o:['solo subir de nivel','descender de nivel de necesidad','eliminar las necesidades','ignorar la motivación'],a:1,exp:'ERG (Existencia, Relación, Crecimiento) admite retroceder de nivel.'},
+  {q:'Los tres estilos clásicos de liderazgo son:',o:['X, Y, Z','autoritario, democrático y laissez-faire','logro, poder, afiliación','línea, staff y comité'],a:1,exp:'Autoritario, democrático y laissez-faire (dejar hacer).'}
+ ],
+ 'quiz-riesgo':[
+  {q:'El criterio de Wald (maximin) elige:',o:['el mayor de los máximos','el mejor de los peores resultados','la media de cada fila','el menor arrepentimiento'],a:1,exp:'Wald (pesimista): mira el peor de cada fila y elige el mejor de esos peores.'},
+  {q:'El criterio de Laplace supone que los estados:',o:['son equiprobables','tienen probabilidad conocida distinta','no importan','siempre favorecen A1'],a:0,exp:'Laplace: equiprobables → media aritmética de la fila.'},
+  {q:'Hurwicz con α=0,6 calcula para cada fila:',o:['0,6·mín + 0,4·máx','0,6·máx + 0,4·mín','la media','el máximo arrepentimiento'],a:1,exp:'Hurwicz = α·máximo + (1−α)·mínimo, con α el coeficiente de optimismo.'},
+  {q:'El criterio de Savage minimiza:',o:['el beneficio','el máximo arrepentimiento','la esperanza','la varianza'],a:1,exp:'Savage: construye la matriz de arrepentimientos y minimiza el máximo.'},
+  {q:'La esperanza de una alternativa es:',o:['Σ xᵢ·pᵢ','Σ pᵢ·(xᵢ−E)²','√varianza','el mayor xᵢ'],a:0,exp:'E = Σ xᵢ·pᵢ (media ponderada por probabilidades).'},
+  {q:'En Bayes, P(A|B) =',o:['P(A)·P(B)','P(B|A)·P(A) / P(B)','P(B|A)/P(A)','P(A)+P(B)'],a:1,exp:'Teorema de Bayes: P(A|B)=P(B|A)·P(A)/P(B).'},
+  {q:'A mayor desviación típica σ de una alternativa:',o:['menor riesgo','mayor riesgo','mayor esperanza','menor beneficio seguro'],a:1,exp:'σ mide la dispersión: cuanto mayor, más riesgo.'}
+ ],
+ 'quiz-tecnicas':[
+  {q:'En un árbol de decisión, en un nodo de azar se:',o:['elige la mejor rama','calcula el valor esperado (Σ p·x)','suman los costes','minimiza el arrepentimiento'],a:1,exp:'Nodo de azar → VE = Σ p·x. Nodo de decisión → se elige el mayor VE.'},
+  {q:'El VEIP es:',o:['el valor del proyecto','VE con información perfecta − mejor VE sin información','la suma de los flujos','el camino crítico'],a:1,exp:'VEIP = lo máximo a pagar por información que predijera el estado con certeza.'},
+  {q:'En programación lineal por el método gráfico, el óptimo está:',o:['en el centro de la región','en un vértice de la región factible','siempre en el origen','fuera de las restricciones'],a:1,exp:'El óptimo de un problema lineal está en un vértice de la región factible.'},
+  {q:'El camino crítico de un PERT es:',o:['la ruta más corta','la ruta más larga (holgura 0)','la actividad más cara','la de menor duración'],a:1,exp:'Camino crítico = secuencia de actividades con holgura 0 = ruta más larga.'},
+  {q:'La holgura de una actividad se calcula como:',o:['EF − ES','LS − ES','duración × 2','ES + EF'],a:1,exp:'Holgura = LS − ES = LF − EF. Las críticas tienen holgura 0.'},
+  {q:'Retrasar una actividad crítica:',o:['no afecta','retrasa todo el proyecto','reduce la duración','aumenta la holgura'],a:1,exp:'Por definición, un retraso en una actividad crítica retrasa el proyecto entero.'}
+ ],
+ 'quiz-financieras':[
+  {q:'La ecuación fundamental del balance es:',o:['Activo = Ingresos − Gastos','Activo = Patrimonio Neto + Pasivo','Pasivo = Activo + PN','Activo = Pasivo − PN'],a:1,exp:'Activo = PN + Pasivo (siempre cuadra).'},
+  {q:'El fondo de maniobra es:',o:['Activo total − Pasivo total','Activo corriente − Pasivo corriente','BAII / Activo','Bº neto / PN'],a:1,exp:'FM = AC − PC = recursos permanentes − ANC.'},
+  {q:'Un fondo de maniobra positivo indica:',o:['riesgo de quiebra','equilibrio financiero','que el activo es nulo','que no hay deuda'],a:1,exp:'FM > 0 → la empresa puede atender deudas a corto: equilibrio financiero.'},
+  {q:'La rentabilidad financiera (ROE) es:',o:['BAII / Activo','Bº neto / Patrimonio Neto','Activo / Pasivo','Pasivo / PN'],a:1,exp:'ROE = Bº neto / PN (rentabilidad para el accionista). ROA = BAII/Activo.'},
+  {q:'Si ROE > ROA, el apalancamiento de la deuda:',o:['perjudica al accionista','beneficia al accionista','es nulo','no existe'],a:1,exp:'ROE>ROA → la deuda rinde más de lo que cuesta: apalancamiento positivo.'},
+  {q:'El PMM financiero es:',o:['PMM económico + pago a proveedores','PMM económico − periodo de pago a proveedores','solo el periodo de cobro','el activo corriente'],a:1,exp:'PMM financiero = PMM económico − periodo medio de pago a proveedores.'}
+ ],
+ 'quiz-inversiones':[
+  {q:'Un proyecto se acepta cuando:',o:['VAN < 0','VAN > 0 (o TIR > k)','TIR < k','el payback es infinito'],a:1,exp:'Se crea valor si VAN>0, equivalente a TIR>coste de capital k.'},
+  {q:'La TIR es el tipo de descuento que hace:',o:['VAN máximo','VAN = 0','el payback = 0','los flujos = 0'],a:1,exp:'TIR = r tal que VAN(r)=0.'},
+  {q:'En el VAN, cada flujo Ft se divide entre:',o:['(1+k)','(1+k)ᵗ','k·t','t'],a:1,exp:'VAN = −D0 + Σ Ft/(1+k)ᵗ: cada flujo se actualiza al periodo t.'},
+  {q:'El payback simple mide:',o:['la rentabilidad total','los años en recuperar el desembolso inicial','el valor del dinero en el tiempo','el coste de capital'],a:1,exp:'Payback = tiempo hasta recuperar D0; método estático (no descuenta).'},
+  {q:'Si al ordenar proyectos el VAN y la TIR discrepan, prevalece:',o:['la TIR','el VAN','el payback','el flujo total'],a:1,exp:'Para decidir entre alternativas prevalece el VAN.'},
+  {q:'Los métodos dinámicos se diferencian de los estáticos en que:',o:['ignoran los flujos','descuentan el valor del dinero en el tiempo','no usan el desembolso','solo valen para 1 año'],a:1,exp:'Dinámicos (VAN, TIR, payback descontado) sí actualizan; estáticos no.'}
+ ],
+ 'quiz-financiacion':[
+  {q:'La autofinanciación es una fuente:',o:['ajena y externa','propia e interna (reservas, amortizaciones)','a corto plazo siempre','de los proveedores'],a:1,exp:'Autofinanciación = recursos generados internamente (reservas, amortizaciones).'},
+  {q:'Frente al TIN, la TAE:',o:['es siempre menor','incorpora la capitalización y comisiones (coste real)','ignora la frecuencia de pago','solo aplica a depósitos'],a:1,exp:'La TAE refleja el coste efectivo (capitalización y comisiones). TAE ≥ TIN con pagos intermedios.'},
+  {q:'Con TIN 12 % y pagos mensuales, la TAE es:',o:['12 %','exactamente 1 %','(1,01)¹²−1 ≈ 12,68 %','24 %'],a:2,exp:'Tipo mensual 1 % → TAE = 1,01¹²−1 = 12,68 %.'},
+  {q:'Una comisión de apertura en un préstamo:',o:['no afecta al coste','eleva el coste efectivo por encima del TIN','reduce la TAE','solo afecta a la TIR'],a:1,exp:'La comisión reduce lo recibido y sube el coste real: hay que comparar por TAE.'},
+  {q:'El WACC se calcula como:',o:['suma de los costes','media ponderada del coste de propios y deuda','solo el coste de la deuda','el TIN del préstamo'],a:1,exp:'WACC = w_propios·k_propios + w_deuda·k_deuda.'},
+  {q:'Una inversión crea valor si su rentabilidad:',o:['es menor que el WACC','supera el WACC','iguala el TIN','es cero'],a:1,exp:'Debe rendir por encima del coste medio del capital (WACC = k del VAN).'}
+ ],
+ 'quiz-produccion':[
+  {q:'El punto muerto Q* es:',o:['CF/(P−CVu)','CF·P','(P−CVu)/CF','CV/Q'],a:0,exp:'Q* = CF/(P−CVu): unidades para beneficio cero.'},
+  {q:'El margen de contribución unitario es:',o:['P+CVu','P−CVu','CF/Q','CT/Q'],a:1,exp:'Margen unitario = P − CVu: lo que cada unidad aporta a cubrir los fijos.'},
+  {q:'En el punto muerto el beneficio es:',o:['máximo','cero','negativo','igual a los CF'],a:1,exp:'En Q* ingresos = costes totales → B = 0.'},
+  {q:'El coste medio (CMe) es:',o:['ΔCT/ΔQ','CT/Q','CF+CV','P−CVu'],a:1,exp:'CMe = CT/Q. El coste marginal CMg = ΔCT/ΔQ.'},
+  {q:'Con costes variables unitarios constantes, el coste marginal es:',o:['igual a CF','igual a CVu','igual a CMe','cero'],a:1,exp:'CMg = ΔCT/ΔQ = CVu cuando el coste variable unitario es constante.'},
+  {q:'El punto de indiferencia fabricar/comprar iguala:',o:['ingresos y costes','coste de fabricar y coste de comprar','CF y CV','VAN y TIR'],a:1,exp:'Se iguala CF+CVu·Q = Pcompra·Q para hallar el volumen de indiferencia.'}
+ ],
+ 'quiz-marketing':[
+  {q:'Si |Ep| > 1 la demanda es:',o:['inelástica','elástica','unitaria','rígida'],a:1,exp:'|Ep|>1 elástica (bajar precio sube ingresos); |Ep|<1 inelástica; =1 unitaria.'},
+  {q:'Una elasticidad-renta Er < 0 indica un bien:',o:['normal','de lujo','inferior','complementario'],a:2,exp:'Er<0 → bien inferior (sube la renta y baja su demanda).'},
+  {q:'Una elasticidad cruzada Exy positiva indica bienes:',o:['complementarios','sustitutivos','inferiores','de lujo'],a:1,exp:'Exy>0 → sustitutivos. Exy<0 → complementarios.'},
+  {q:'La pendiente b de la regresión Y=a+bX es:',o:['(ΣY−bΣX)/n','(nΣXY−ΣXΣY)/(nΣX²−(ΣX)²)','ΣXY/ΣX²','ΣY/ΣX'],a:1,exp:'b = (nΣXY − ΣXΣY)/(nΣX² − (ΣX)²); a = (ΣY − bΣX)/n.'},
+  {q:'Las 4 P del marketing mix son:',o:['Producto, Precio, Plaza, Promoción','Personas, Precio, Plan, Producto','Producto, Proceso, Plaza, Poder','Precio, Plaza, Plan, Promoción'],a:0,exp:'Producto, Precio, Plaza (distribución) y Promoción.'},
+  {q:'El modelo de regresión es explicativo porque:',o:['solo proyecta la tendencia temporal','X explica/causa Y','no usa datos','ignora el pasado'],a:1,exp:'Explicativo: relación causa-efecto X→Y. La extrapolación solo proyecta la tendencia temporal.'}
+ ],
+ 'quiz-valoracion':[
+  {q:'La mayor fuente de incertidumbre (riesgo) de una empresa es:',o:['el color de su logo','la dificultad de prever las ventas','el número de empleados','la antigüedad de la empresa'],a:1,exp:'La alteración de las ventas modifica el beneficio y el valor de la empresa: prever las ventas es el riesgo clave.'},
+  {q:'El apalancamiento operativo (GAO) se relaciona con:',o:['el nivel de deuda','el peso de los costes fijos','el número de acciones','los impuestos'],a:1,exp:'GAO = peso de los costes fijos. A más CF, un pequeño cambio en ventas mueve mucho el EBIT.'},
+  {q:'Un alto apalancamiento financiero (GAF) significa que:',o:['un pequeño cambio en el EBIT cambia mucho el beneficio neto','la empresa no tiene deuda','los costes fijos son cero','el ROA siempre baja'],a:0,exp:'GAF mide el uso de deuda: amplifica el efecto del EBIT sobre el beneficio neto.'},
+  {q:'Hay insolvencia técnica cuando:',o:['las ventas suben','el beneficio operativo no cubre los intereses de la deuda','el ROE supera al ROA','hay mucho fondo de comercio'],a:1,exp:'Insolvencia técnica = BE < intereses (F). Más deuda → más probabilidad de insolvencia.'},
+  {q:'Frente a la valoración en liquidación, la valoración en funcionamiento (going concern):',o:['da un valor más bajo','da un valor más alto e incluye el fondo de comercio','ignora los beneficios futuros','solo vale activos físicos'],a:1,exp:'En funcionamiento se valora la capacidad de generar beneficios futuros e incluye el fondo de comercio → valor más alto.'},
+  {q:'El fondo de comercio (goodwill) es:',o:['el dinero en caja','el valor intangible (marca, reputación, know-how)','el total de las deudas','el activo no corriente'],a:1,exp:'Fondo de comercio = intangibles que hacen valer la empresa por encima de sus activos netos.'}
+ ]
+};
+
+const bancosExtra = {
+ 'quiz-empresa':[
+  {t:'vf',q:'Una fundación, al no tener ánimo de lucro, también se considera una empresa.',a:1,exp:'Falso. La empresa se define por su ánimo de lucro; fundaciones y asociaciones no son empresas.'},
+  {t:'neg',q:'Señala la opción que NO es un factor de producción:',o:['Recursos naturales','Trabajo','Coste de oportunidad','Iniciativa empresarial'],a:2,exp:'Los factores son recursos naturales, trabajo, bienes de capital e iniciativa empresarial. El coste de oportunidad es un concepto, no un factor.'},
+  {t:'caso',q:'Una sociedad divide su capital en participaciones de transmisión restringida y se constituye con 3.000 € mínimos. ¿Qué forma jurídica es?',o:['S.A.','S.L.','Autónomo','Cooperativa'],a:1,exp:'Participaciones + transmisión restringida + 3.000 € mínimos = S.L.'},
+  {t:'multi',q:'Marca TODOS los que son agentes económicos:',o:['Familias','Empresas','Sector público','Coste de oportunidad'],a:[0,1,2],exp:'Agentes: familias, empresas, sector público y sector exterior. El coste de oportunidad no es un agente.'}
+ ],
+ 'quiz-direccion':[
+  {t:'order',q:'Ordena las 4 funciones de la dirección.',items:['Planificación','Organización','Gestión / dirección','Control'],exp:'Planificación → Organización → Gestión/dirección → Control.'},
+  {t:'vf',q:'El análisis PEST estudia el entorno específico o sectorial de la empresa.',a:1,exp:'Falso. PEST analiza el entorno GENÉRICO. El entorno específico/sectorial se estudia con las 5 fuerzas de Porter.'},
+  {t:'caso',q:'Una empresa quiere crecer adquiriendo a un competidor directo. Eso es crecimiento…',o:['interno','externo','por especialización','por diferenciación'],a:1,exp:'Comprar/fusionar otra empresa = crecimiento externo. Interno = ampliar el patrimonio propio.'},
+  {t:'multi',q:'¿Cuáles pertenecen al análisis EXTERNO del DAFO? Marca todas.',o:['Oportunidades','Amenazas','Fortalezas','Debilidades'],a:[0,1],exp:'Externo = Oportunidades y Amenazas (Porter+PEST). Interno = Fortalezas y Debilidades.'},
+  {t:'neg',q:'¿Cuál NO es una estrategia competitiva de Porter?',o:['Liderazgo en costes','Diferenciación','Nichos / segmentación','Unidad de mando'],a:3,exp:'La unidad de mando es un principio de Fayol, no una estrategia de Porter.'}
+ ],
+ 'quiz-estructura':[
+  {t:'caso',q:'En una empresa cada técnico depende a la vez de un jefe funcional y de un jefe de proyecto. ¿Qué estructura es?',o:['En línea','En comité','Matricial','En línea y staff'],a:2,exp:'Doble dependencia (funcional + proyecto) = estructura matricial.'},
+  {t:'vf',q:'En una organización orgánica las decisiones están muy centralizadas.',a:1,exp:'Falso. La orgánica es flexible y DESCENTRALIZADA. La mecanicista es la centralizada.'},
+  {t:'multi',q:'Marca los mecanismos de coordinación:',o:['Adaptación mutua','Supervisión directa','Normalización','Departamentalización'],a:[0,1,2],exp:'Son tres: adaptación mutua, supervisión directa y normalización. La departamentalización es un elemento de diseño, no un mecanismo de coordinación.'}
+ ],
+ 'quiz-personas':[
+  {t:'order',q:'Ordena la pirámide de Maslow, de la base a la cima.',items:['Fisiológicas','Seguridad','Sociales','Estima','Autorrealización'],exp:'Fisiológicas → Seguridad → Sociales → Estima → Autorrealización.'},
+  {t:'vf',q:'Según Herzberg, subir el salario es un factor motivador que aumenta la satisfacción.',a:1,exp:'Falso. El salario es factor de HIGIENE: su ausencia desmotiva, pero no motiva por sí solo.'},
+  {t:'caso',q:'Un jefe cree que sus empleados son responsables y les da autonomía. Según McGregor aplica la teoría…',o:['X','Y','ERG','Z'],a:1,exp:'Teoría Y = ver al trabajador como responsable → dar autonomía. X = vago → control.'},
+  {t:'multi',q:'Necesidades de McClelland. Marca todas.',o:['Logro','Afiliación','Poder','Seguridad'],a:[0,1,2],exp:'McClelland: logro, afiliación y poder. La seguridad es de Maslow.'}
+ ],
+ 'quiz-riesgo':[
+  {t:'num',q:'Matriz A1=(500,200,−100). Con P(E1)=0,5; P(E2)=0,3; P(E3)=0,2, ¿cuánto vale la esperanza E(A1) en €?',ans:290,tol:1,unit:'€',exp:'E(A1)=0,5·500+0,3·200+0,2·(−100)=250+60−20=290 €.'},
+  {t:'caso',q:'Debes decidir sin conocer las probabilidades y eres pesimista (te fijas en lo peor que puede pasar). ¿Qué criterio aplicas?',o:['Maximax (optimista)','Wald / Maximin','Laplace','Bayes'],a:1,exp:'Pesimista sin probabilidades = Wald (maximin): el mejor de los peores resultados.'},
+  {t:'num',q:'Bayes: P(Éxito)=0,4; P(Fav|Éxito)=0,8; P(Fav|Fracaso)=0,3; P(Fracaso)=0,6. ¿Cuánto vale P(Favorable)?',ans:0.5,tol:0.01,exp:'P(Fav)=0,8·0,4+0,3·0,6=0,32+0,18=0,50.'},
+  {t:'vf',q:'Una desviación típica σ más alta significa MENOR riesgo en la alternativa.',a:1,exp:'Falso. σ mide la dispersión: a mayor σ, mayor riesgo.'}
+ ],
+ 'quiz-tecnicas':[
+  {t:'num',q:'Maximizar Z=40x+30y. El óptimo está en el vértice (20,60). ¿Cuánto vale Z en ese punto?',ans:2600,tol:1,exp:'Z=40·20+30·60=800+1.800=2.600.'},
+  {t:'num',q:'PERT: A(3,—), B(4,—), C(2,A), D(5,A·B), E(3,C·D). ¿Cuántos días dura el proyecto?',ans:12,tol:0,unit:'días',exp:'Ruta crítica B→D→E = 4+5+3 = 12 días.'},
+  {t:'order',q:'Ordena los pasos del método gráfico de programación lineal.',items:['Dibujar las restricciones','Delimitar la región factible','Calcular los vértices','Evaluar Z en cada vértice'],exp:'Restricciones → región factible → vértices → evaluar Z (el óptimo está en un vértice).'},
+  {t:'caso',q:'Quieres saber lo máximo que pagarías por un estudio que predijera el estado de la naturaleza con certeza. ¿Qué calculas?',o:['El VAN','El VEIP','El WACC','El payback'],a:1,exp:'VEIP = Valor Esperado de la Información Perfecta.'}
+ ],
+ 'quiz-financieras':[
+  {t:'num',q:'Balance: Activo corriente 40.000 €, Pasivo corriente 20.000 €. ¿Cuál es el fondo de maniobra (€)?',ans:20000,tol:1,unit:'€',exp:'FM = AC − PC = 40.000 − 20.000 = 20.000 €.'},
+  {t:'num',q:'Bº neto = 8.000 €, Patrimonio Neto = 50.000 €. ¿Cuál es el ROE (%)?',ans:16,tol:0.3,unit:'%',exp:'ROE = Bº neto / PN = 8.000 / 50.000 = 16 %.'},
+  {t:'num',q:'Activo corriente 40.000 €, Pasivo corriente 20.000 €. ¿Cuál es el ratio de liquidez?',ans:2,tol:0.05,exp:'Liquidez = AC / PC = 40.000 / 20.000 = 2.'},
+  {t:'vf',q:'Un fondo de maniobra negativo indica equilibrio financiero.',a:1,exp:'Falso. FM negativo = riesgo de suspensión de pagos. El equilibrio exige FM > 0.'},
+  {t:'caso',q:'En una empresa el ROE (16 %) es mayor que el ROA (15 %). El apalancamiento de la deuda es…',o:['negativo','positivo','nulo','inexistente'],a:1,exp:'ROE > ROA → la deuda rinde más de lo que cuesta: apalancamiento positivo.'}
+ ],
+ 'quiz-inversiones':[
+  {t:'num',q:'D₀=10.000 €, flujos 4.000/5.000/4.000, k=10 %. ¿Cuál es el VAN (€, redondeado)?',ans:773.85,tol:5,unit:'€',exp:'VAN = −10.000 + 3.636,36 + 4.132,23 + 3.005,26 = +773,85 €.'},
+  {t:'num',q:'Mismo proyecto (D₀=10.000; flujos 4.000/5.000/4.000). ¿Cuál es el payback simple (años)?',ans:2.25,tol:0.05,unit:'años',exp:'Tras 2 años se recuperan 9.000; faltan 1.000 de los 4.000 del año 3 → 2 + 1.000/4.000 = 2,25 años.'},
+  {t:'vf',q:'Si el VAN de un proyecto es mayor que 0, entonces su TIR es menor que k.',a:1,exp:'Falso. VAN > 0 equivale a TIR > k (ambos indican que se acepta).'},
+  {t:'caso',q:'Al comparar dos proyectos, el VAN y la TIR dan rankings distintos. ¿Qué criterio prevalece?',o:['La TIR','El VAN','El payback','El flujo total'],a:1,exp:'Entre alternativas, cuando discrepan, prevalece el VAN.'}
+ ],
+ 'quiz-financiacion':[
+  {t:'num',q:'Un préstamo tiene TIN del 12 % anual con pagos mensuales. ¿Cuál es la TAE (%)?',ans:12.68,tol:0.1,unit:'%',exp:'Tipo mensual 1 % → TAE = (1,01)¹² − 1 = 12,68 %.'},
+  {t:'num',q:'Financiación: 60 % propios al 10 % y 40 % deuda al 5 %. ¿Cuál es el WACC (%)?',ans:8,tol:0.1,unit:'%',exp:'WACC = 0,6·10 + 0,4·5 = 6 + 2 = 8 %.'},
+  {t:'vf',q:'Cuando hay pagos intermedios, la TAE siempre es menor que el TIN.',a:1,exp:'Falso. Con capitalización intermedia la TAE es mayor o igual que el TIN.'},
+  {t:'caso',q:'Reservas y amortizaciones son una fuente de financiación…',o:['ajena y externa','propia e interna (autofinanciación)','a corto plazo siempre','de los proveedores'],a:1,exp:'Reservas y amortizaciones = autofinanciación = recursos propios internos.'}
+ ],
+ 'quiz-produccion':[
+  {t:'num',q:'CF=20.000 €, P=50 €/u, CVu=30 €/u. ¿Cuál es el punto muerto (uds)?',ans:1000,tol:1,unit:'uds',exp:'Q* = CF/(P−CVu) = 20.000/20 = 1.000 uds.'},
+  {t:'num',q:'Con CF=20.000, P=50, CVu=30, ¿cuál es el beneficio para Q=1.500 uds (€)?',ans:10000,tol:1,unit:'€',exp:'B = margen·(Q−Q*) = 20·(1.500−1.000) = 10.000 €.'},
+  {t:'num',q:'Fabricar cuesta CF=20.000 + 30·Q; comprar fuera 42 €/u. ¿En cuántas uds está el punto de indiferencia?',ans:1667,tol:3,unit:'uds',exp:'20.000 + 30Q = 42Q → 20.000 = 12Q → Q ≈ 1.667 uds.'},
+  {t:'vf',q:'En el punto muerto el beneficio de la empresa es máximo.',a:1,exp:'Falso. En el punto muerto el beneficio es CERO (ingresos = costes totales).'}
+ ],
+ 'quiz-marketing':[
+  {t:'num',q:'El precio sube de 10 € a 12 € y la cantidad baja de 100 a 80 uds. ¿Cuál es la elasticidad-precio Ep?',ans:-1,tol:0.05,exp:'%ΔQ=−20 %, %ΔP=+20 % → Ep = −20/20 = −1 (unitaria).'},
+  {t:'caso',q:'Subes el precio de un producto y los ingresos totales AUMENTAN. La demanda es…',o:['elástica','inelástica','unitaria','perfectamente elástica'],a:1,exp:'Si subir el precio sube los ingresos, |Ep|<1 → demanda inelástica.'},
+  {t:'num',q:'Datos (X,Y): (1,2),(2,3),(3,5),(4,6). ΣX=10, ΣY=16, ΣXY=47, ΣX²=30, n=4. ¿Cuál es la pendiente b?',ans:1.4,tol:0.05,exp:'b = (4·47 − 10·16)/(4·30 − 100) = 28/20 = 1,4.'},
+  {t:'multi',q:'Marca SOLO las que son una de las 4 P del marketing mix:',o:['Producto','Plaza','Personas','Promoción'],a:[0,1,3],exp:'Las 4 P son Producto, Precio, Plaza y Promoción. "Personas" no es una de las 4 P.'}
+ ],
+ 'quiz-valoracion':[
+  {t:'num',q:'Presupuesto de tesorería: saldo inicial 2.000 €, cobros 8.000 €, pagos 8.100 €. ¿Cuál es el saldo final (€)?',ans:1900,tol:1,unit:'€',exp:'2.000 + 8.000 − 8.100 = 1.900 €.'},
+  {t:'num',q:'Beneficio operativo BE = 80.000 €, intereses = 50.000 €. ¿Cuál es el ICR (ratio de cobertura de intereses)?',ans:1.6,tol:0.05,exp:'ICR = BE/intereses = 80.000/50.000 = 1,6 (cobertura justa).'},
+  {t:'num',q:'Valoración en liquidación: activos + derechos = 120.000 €, deudas = 40.000 €. ¿Cuál es el valor sustancial NETO (€)?',ans:80000,tol:1,unit:'€',exp:'Valor neto = (activos+derechos) − deudas = 120.000 − 40.000 = 80.000 €.'},
+  {t:'vf',q:'La rentabilidad operativa (ROA) aumenta cuando la empresa se endeuda más.',a:1,exp:'Falso. El ROA no cambia con la deuda (depende de los activos). El que sube es el ROE.'},
+  {t:'caso',q:'Se va a valorar una empresa que cerrará y venderá todos sus activos. ¿Qué enfoque de valoración corresponde?',o:['En funcionamiento (going concern)','En liquidación','Por múltiplos de EBITDA','Descuento de flujos a 10 años'],a:1,exp:'Si la empresa cierra y se venden los activos, es valoración en liquidación (valor sustancial).'},
+  {t:'multi',q:'Marca lo que SÍ forma parte del fondo de comercio:',o:['Marca y reputación','Know-how / saber hacer','Cartera de clientes','Deudas a corto plazo'],a:[0,1,2],exp:'Fondo de comercio = intangibles (marca, know-how, clientes). Las deudas no son fondo de comercio.'}
+ ]
+};
+
+const $ = id => document.getElementById(id);
+function escapeHtml(t){return (''+t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// Fusiona las preguntas de variedad en los bancos base
+if(typeof bancosExtra!=='undefined'){Object.keys(bancosExtra).forEach(k=>{bancos[k]=(bancos[k]||[]).concat(bancosExtra[k]);});}
+
+const TYPE_LABEL={mcq:'Test',caso:'Caso práctico',neg:'Elige la falsa',vf:'Verdadero / Falso',multi:'Multi-respuesta',num:'Cálculo',order:'Ordenar'};
+
+function markResult(parent,ok){
+  if(parent.dataset.answered) return;
+  parent.dataset.answered='1';
+  parent.dataset.result=ok?'correct':'wrong';
+  const ex=parent.querySelector('.quiz-explain'); if(ex)ex.classList.add('show');
+  const so=parent.querySelector('.quiz-sol'); if(so)so.classList.add('show');
+  saveProgress();
+  if(parent.closest('#quiz-simulacro'))checkSimulacro();
+}
+
+function renderQuiz(containerId, questions){
+  const el=$(containerId); if(!el) return; el.innerHTML='';
+  questions.forEach((q,i)=>{
+    const type=q.t||'mcq';
+    const wrap=document.createElement('div'); wrap.className='quiz-q'; wrap.dataset.type=type;
+    const badge=`<span class="q-badge q-${type}">${TYPE_LABEL[type]||'Test'}</span>`;
+    const explain=`<div class="quiz-explain"><b>Razonamiento</b>${escapeHtml(q.exp)}</div>`;
+    let inner='';
+
+    let sol='';
+    if(type==='mcq'||type==='caso'||type==='neg'||type==='vf'){
+      let opts, ans;
+      if(type==='vf'){ opts=['Verdadero','Falso']; ans=q.a; }
+      else {
+        // Baraja las opciones para que la correcta no caiga siempre en A/B
+        const arr=shuffleArr(q.o.map((txt,j)=>({txt:txt,orig:j})));
+        opts=arr.map(o=>o.txt); ans=arr.findIndex(o=>o.orig===q.a);
+      }
+      let oh=''; opts.forEach((txt,j)=>{oh+=`<label data-idx="${j}"><span class="key">${String.fromCharCode(65+j)}</span><span>${escapeHtml(txt)}</span></label>`;});
+      inner=`<div class="quiz-options" data-ans="${ans}">${oh}</div>`;
+      sol=String.fromCharCode(65+ans)+') '+opts[ans];
+    } else if(type==='multi'){
+      // Baraja y recalcula los índices correctos
+      const arr=shuffleArr(q.o.map((txt,j)=>({txt:txt,orig:j})));
+      const opts=arr.map(o=>o.txt);
+      const correct=[]; arr.forEach((o,j)=>{ if(q.a.includes(o.orig)) correct.push(j); });
+      let oh=''; opts.forEach((txt,j)=>{oh+=`<label data-idx="${j}"><span class="key">${String.fromCharCode(65+j)}</span><span>${escapeHtml(txt)}</span></label>`;});
+      inner=`<div class="quiz-options multi" data-ans="${correct.join(',')}">${oh}</div><button class="check-btn" type="button">Comprobar</button>`;
+      sol=correct.map(j=>opts[j]).join('  ·  ');
+    } else if(type==='num'){
+      inner=`<div class="quiz-num"><input type="text" class="num-input" inputmode="decimal" placeholder="tu respuesta"><span class="num-unit">${escapeHtml(q.unit||'')}</span><button class="check-btn" type="button">Comprobar</button></div>`;
+      sol=q.ans+(q.unit?(' '+q.unit):'');
+    } else if(type==='order'){
+      const pool=shuffleArr(q.items.map((t,j)=>({t:t,idx:j})));
+      let ph=''; pool.forEach(it=>{ph+=`<span class="chip" data-idx="${it.idx}">${escapeHtml(it.t)}</span>`;});
+      inner=`<div class="quiz-order"><div class="order-pool">${ph}</div><div class="order-seq"></div><button class="check-btn" type="button">Comprobar</button> <button class="order-reset btn-link" type="button">Reiniciar</button></div>`;
+      sol=q.items.join('  →  ');
+    }
+
+    // Línea de SOLUCIÓN explícita (se revela al responder)
+    const solHtml=`<div class="quiz-sol"><b>Solución</b>${escapeHtml(sol)}</div>`;
+
+    wrap.innerHTML=`<div class="num">${i+1}</div><div class="q-main">${badge}<div class="question">${escapeHtml(q.q)}</div>${inner}${solHtml}${explain}</div>`;
+    el.appendChild(wrap);
+
+    if(type==='mcq'||type==='caso'||type==='neg'||type==='vf'){
+      const optBox=wrap.querySelector('.quiz-options');
+      optBox.addEventListener('click',e=>{
+        const lbl=e.target.closest('label'); if(!lbl||wrap.dataset.answered) return;
+        const ans=+optBox.dataset.ans, idx=+lbl.dataset.idx;
+        optBox.querySelectorAll('label').forEach((l,j)=>{
+          if(j===ans) l.classList.add('correct');
+          else if(j===idx && idx!==ans) l.classList.add('incorrect');
+        });
+        markResult(wrap, idx===ans);
+      });
+    } else if(type==='multi'){
+      const optBox=wrap.querySelector('.quiz-options');
+      optBox.addEventListener('click',e=>{const lbl=e.target.closest('label'); if(!lbl||wrap.dataset.answered)return; lbl.classList.toggle('sel');});
+      wrap.querySelector('.check-btn').addEventListener('click',()=>{
+        if(wrap.dataset.answered) return;
+        const correct=optBox.dataset.ans.split(',').map(Number);
+        let ok=true;
+        optBox.querySelectorAll('label').forEach((l,j)=>{
+          const sel=l.classList.contains('sel'), isC=correct.includes(j);
+          if(isC){ l.classList.add('correct'); if(!sel){l.classList.add('missed'); ok=false;} }
+          else if(sel){ l.classList.add('incorrect'); ok=false; }
+        });
+        markResult(wrap, ok);
+      });
+    } else if(type==='num'){
+      const input=wrap.querySelector('.num-input');
+      const check=()=>{
+        if(wrap.dataset.answered) return;
+        let raw=(input.value||'').replace(/\s/g,'').replace('%','').replace('€','');
+        // Si hay coma decimal, los puntos son separadores de miles; si no, el punto es decimal
+        if(raw.indexOf(',')>=0) raw=raw.replace(/\./g,'').replace(',', '.');
+        const v=parseFloat(raw);
+        const tol=(q.tol!=null)?q.tol:Math.max(0.01,Math.abs(q.ans)*0.01);
+        const ok=isFinite(v)&&Math.abs(v-q.ans)<=tol;
+        input.classList.add(ok?'correct':'incorrect'); input.disabled=true;
+        markResult(wrap, ok);
+      };
+      wrap.querySelector('.check-btn').addEventListener('click',check);
+      input.addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+    } else if(type==='order'){
+      const pool=wrap.querySelector('.order-pool'), seq=wrap.querySelector('.order-seq');
+      pool.addEventListener('click',e=>{const c=e.target.closest('.chip'); if(!c||wrap.dataset.answered)return; seq.appendChild(c);});
+      seq.addEventListener('click',e=>{const c=e.target.closest('.chip'); if(!c||wrap.dataset.answered)return; pool.appendChild(c);});
+      wrap.querySelector('.order-reset').addEventListener('click',()=>{if(wrap.dataset.answered)return; seq.querySelectorAll('.chip').forEach(c=>pool.appendChild(c));});
+      wrap.querySelector('.check-btn').addEventListener('click',()=>{
+        if(wrap.dataset.answered) return;
+        const chips=[].slice.call(seq.querySelectorAll('.chip'));
+        if(chips.length!==q.items.length) return;
+        let ok=true;
+        chips.forEach((c,pos)=>{const good=(+c.dataset.idx===pos); c.classList.add(good?'correct':'incorrect'); if(!good)ok=false;});
+        markResult(wrap, ok);
+      });
+    }
+  });
+}
+Object.keys(bancos).forEach(k=>{if($(k))renderQuiz(k,bancos[k]);});
+
+function checkSimulacro(){
+  const box=$('quiz-simulacro'); if(!box) return;
+  const total=box.querySelectorAll('.quiz-q').length;
+  const answered=box.querySelectorAll('.quiz-q[data-answered]').length;
+  if(!total||answered<total) return;
+  const right=box.querySelectorAll('.quiz-q[data-result="correct"]').length;
+  const wrong=total-right;
+  // Formato real del examen: acierto +1, fallo −0,25; nota sobre 10
+  const raw=right - 0.25*wrong;
+  const nota=Math.max(0, raw/total*10);
+  $('sim-score').textContent=nota.toFixed(2).replace('.',',')+'/10';
+  let msg='';
+  if(nota>=9)msg='Excelente. Listo para el examen.';
+  else if(nota>=7)msg='Bien. Repasa los fallos.';
+  else if(nota>=5)msg='Aprobado justo. Revisa teoría y problemas.';
+  else msg='Suspenso — ojo a la penalización por fallo.';
+  $('sim-verdict').textContent=`${right} aciertos · ${wrong} fallos (−0,25 c/u) · ${msg}`;
+  $('simulacro-summary').style.display='block';
+  $('simulacro-summary').scrollIntoView({behavior:'smooth'});
+}
+function startSimulacro(){
+  // Réplica del examen real: solo preguntas tipo test de 4 opciones (UD 1-12)
+  const all=[];
+  Object.keys(bancos).forEach(k=>bancos[k].forEach(q=>{
+    const t=q.t||'mcq';
+    if((t==='mcq'||t==='caso'||t==='neg') && q.o && q.o.length===4) all.push(q);
+  }));
+  shuffleArr(all);
+  renderQuiz('quiz-simulacro', all.slice(0,20));
+  $('simulacro-summary').style.display='none';
+}
+function resetSimulacro(){
+  const box=$('quiz-simulacro');
+  box.innerHTML='<p style="color:var(--ink-faint);font-style:italic">Pulsa "Iniciar simulacro" para generar 20 preguntas tipo test (formato examen real).</p>';
+  $('simulacro-summary').style.display='none';
+}
+resetSimulacro();
+
+function saveProgress(){
+  const data={};
+  document.querySelectorAll('.quiz-container').forEach(box=>{
+    data[box.id]={answered:box.querySelectorAll('.quiz-q[data-answered]').length,total:box.querySelectorAll('.quiz-q').length};
+  });
+  try{localStorage.setItem('ade-trainer-progress',JSON.stringify(data));}catch(e){}
+  updateProgressUI(data);
+}
+function loadProgress(){try{const r=localStorage.getItem('ade-trainer-progress'); if(r)updateProgressUI(JSON.parse(r));}catch(e){}}
+function updateProgressUI(data){
+  let a=0,t=0; Object.values(data).forEach(v=>{a+=v.answered;t+=v.total});
+  const pct=t?Math.round(a/t*100):0;
+  $('progressBar').style.width=pct+'%'; $('progressVal').textContent=pct+' %';
+}
+
+const TEMAS=[
+ {id:'empresa',n:'1',t:'La empresa',b:'Coste de oportunidad, sistema, clases de empresa y stakeholders.'},
+ {id:'direccion',n:'2',t:'Dirección y estrategia',b:'4 funciones, 14 principios de Fayol y DAFO (Porter + PEST).'},
+ {id:'estructura',n:'3',t:'Estructura',b:'Coordinación, mecanicista vs orgánica y tipos de estructura.'},
+ {id:'personas',n:'4',t:'Personas',b:'Motivación (Maslow, Herzberg, McClelland) y liderazgo X-Y.'},
+ {id:'riesgo',n:'5',t:'Riesgo y decisiones',b:'Criterios de decisión, esperanza/varianza y Bayes.'},
+ {id:'tecnicas',n:'6',t:'Técnicas instrumentales',b:'Árbol, VEIP, programación lineal y PERT.'},
+ {id:'financieras',n:'7',t:'Decisiones financieras',b:'Balance, fondo de maniobra, ROA/ROE y ratios.'},
+ {id:'inversiones',n:'8',t:'Selección de inversiones',b:'VAN, TIR y payback.'},
+ {id:'financiacion',n:'9',t:'Fuentes de financiación',b:'TIN vs TAE, coste del préstamo y WACC.'},
+ {id:'produccion',n:'10',t:'Producción',b:'Punto muerto, costes y producir o comprar.'},
+ {id:'marketing',n:'11',t:'Marketing',b:'Elasticidades y regresión lineal simple.'},
+ {id:'valoracion',n:'12',t:'Riesgo y valoración',b:'Apalancamiento (GAO/GAF), insolvencia (ICR), tesorería y valoración de empresas.'}
+];
+function temaProgress(id){try{var d=JSON.parse(localStorage.getItem('ade-trainer-progress')||'{}');var v=d['quiz-'+id];if(v&&v.total)return Math.round(v.answered/v.total*100);}catch(e){}return 0;}
+function buildTemaGrid(){
+  var g=document.getElementById('temaGrid'); if(!g)return;
+  g.innerHTML=TEMAS.map(function(x){var p=temaProgress(x.id);
+    return '<a class="tema-card" href="#t/'+x.id+'"><span class="tc-num">Tema '+x.n+'</span>'
+      +'<span class="tc-title">'+x.t+'</span><span class="tc-blurb">'+x.b+'</span>'
+      +'<span class="tc-foot"><span class="tc-bar"><span style="width:'+p+'%"></span></span>'
+      +'<span class="tc-go">ver tema →</span></span></a>';}).join('');
+}
+function showRoute(route){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  var el;
+  if(route==='temas'){buildTemaGrid();el=document.getElementById('view-temas');}
+  else if(route==='simulacro')el=document.getElementById('simulacro');
+  else if(route.indexOf('t/')===0)el=document.getElementById(route.slice(2));
+  else el=document.getElementById('view-home');
+  if(!el){el=document.getElementById('view-home');route='home';}
+  el.classList.add('active'); window.scrollTo(0,0);
+  document.querySelectorAll('#toc a').forEach(function(a){
+    const active=a.getAttribute('href')==='#'+route;
+    a.classList.toggle('active',active);
+    if(active)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+  });
+  if(window.renderMathInElement){try{renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}catch(e){}}
+}
+function router(){showRoute((location.hash||'#home').replace(/^#/,''));}
+window.addEventListener('hashchange',router);
+buildTemaGrid(); router();
+loadProgress(); setInterval(saveProgress,5000);
+
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  var l=document.querySelector('#themeToggle .tt-label'); if(l)l.textContent=(t==='dark')?'Modo oscuro':'Modo claro';
+  try{localStorage.setItem('ade-theme',t);}catch(e){}
+}
+function toggleTheme(){var cur=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';applyTheme(cur==='dark'?'light':'dark');}
+(function(){var s='light';try{s=localStorage.getItem('ade-theme')||'light';}catch(e){}applyTheme(s);})();
+
+</script>
+</body>
+</html>
