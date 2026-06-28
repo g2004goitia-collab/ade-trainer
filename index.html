@@ -1395,12 +1395,123 @@ const bancosExtra = {
  ]
 };
 
+const bancosCobertura = {
+ 'quiz-empresa':[
+  {q:'La rentabilidad de la empresa mide:',o:['el volumen total de ventas','la relación entre el beneficio y los recursos empleados','el número de trabajadores','el capital social aportado'],a:1,exp:'Rentabilidad = beneficio / recursos empleados: relaciona el resultado con lo invertido.'},
+  {q:'Un bien se diferencia de un servicio en que el bien:',o:['es intangible','es tangible y se puede almacenar','no se puede transportar','nunca se vende'],a:1,exp:'El bien es tangible, almacenable y transportable; el servicio es intangible y no se almacena.'},
+  {q:'La sinergia de la empresa como sistema significa que:',o:['las partes funcionan aisladas','el conjunto produce más que la suma de sus partes','no hay relación con el exterior','el sistema está cerrado'],a:1,exp:'Sinergia: el resultado del sistema supera la suma de sus subsistemas por separado.'},
+  {t:'caso',q:'Una empresa posee fábricas y filiales productivas en varios países. Es una empresa:',o:['local','exportadora','multinacional','pública'],a:2,exp:'Multinacional = tiene activos productivos en varios países (no basta con exportar).'},
+  {q:'El sector terciario agrupa actividades de:',o:['extracción de materias primas','industria y transformación','servicios','agricultura'],a:2,exp:'Primario = materias primas, secundario = industria, terciario = servicios.'},
+  {t:'multi',q:'Marca los elementos de toda organización:',o:['Un objetivo común','Dirección / coordinación','División del trabajo','Ánimo de pérdida'],a:[0,1,2],exp:'Organización: objetivo, dirección, elementos personales/materiales y división del trabajo.'},
+  {q:'En el flujo circular de la renta, las familias:',o:['solo regulan el mercado','ofrecen trabajo y consumen bienes','producen bienes industriales','importan y exportan'],a:1,exp:'Las familias aportan los factores (trabajo) y consumen; las empresas producen.'},
+  {t:'vf',q:'El emprendedor es quien tiene la idea inicial, innova y asume el riesgo de poner en marcha el proyecto.',a:0,exp:'Verdadero. El emprendedor es el empresario inicial: idea, innovación y asunción de riesgo.'}
+ ],
+ 'quiz-direccion':[
+  {q:'La función de planificación consiste en:',o:['supervisar el trabajo diario','fijar objetivos y decidir cómo alcanzarlos','contratar personal','medir desviaciones'],a:1,exp:'Planificar = fijar objetivos y las acciones para lograrlos; es la primera función.'},
+  {q:'La función de control consiste en:',o:['fijar la misión','comparar resultados con lo previsto y corregir desviaciones','dividir el trabajo','motivar al personal'],a:1,exp:'Controlar = medir resultados frente a los objetivos y corregir las desviaciones.'},
+  {q:'La misión de una empresa es:',o:['su beneficio anual','la razón de ser y el propósito de la empresa','su organigrama','su cuenta de resultados'],a:1,exp:'Misión = propósito o razón de ser; la visión es la meta a largo plazo.'},
+  {t:'caso',q:'Una empresa lanza un producto NUEVO en un mercado que ya tiene. Según la matriz de crecimiento (Ansoff) es:',o:['penetración de mercado','desarrollo de producto','desarrollo de mercado','diversificación'],a:1,exp:'Producto nuevo + mercado actual = desarrollo de producto.'},
+  {q:'Las cualidades del directivo se agrupan en:',o:['técnicas, humanas y reflexivas','contables, legales y fiscales','operativas y financieras','internas y externas'],a:0,exp:'Cualidades del directivo: técnicas, humanas y reflexivas (conceptuales).'},
+  {t:'neg',q:'¿Cuál NO es un nivel directivo?',o:['Alta dirección','Dirección intermedia','Dirección operativa','Dirección sindical'],a:3,exp:'Niveles: alta dirección, dirección intermedia y dirección operativa.'},
+  {t:'vf',q:'La unidad de dirección significa que cada grupo de actividades con el mismo objetivo tiene un solo plan y un solo responsable.',a:0,exp:'Verdadero. Unidad de dirección = un plan por objetivo; no confundir con unidad de mando (un solo jefe por empleado).'}
+ ],
+ 'quiz-estructura':[
+  {q:'La departamentalización funcional agrupa los puestos por:',o:['zonas geográficas','funciones o especialidades (producción, ventas...)','tipos de cliente','proyectos'],a:1,exp:'Funcional = por funciones/especialidades. Otras: geográfica, por productos, por clientes, por procesos.'},
+  {q:'El organigrama es:',o:['el plan estratégico','la representación gráfica de la estructura organizativa','la lista de proveedores','el balance'],a:1,exp:'Organigrama = representación gráfica de la estructura formal de la empresa.'},
+  {q:'La autoridad de staff se caracteriza por:',o:['mandar directamente sobre la línea','asesorar y apoyar sin mando directo','sustituir a la alta dirección','no existir en las empresas'],a:1,exp:'Staff = asesoramiento/apoyo, sin autoridad de mando directo sobre la línea.'},
+  {q:'Un sistema informático de apoyo a la toma de decisiones directivas se conoce como:',o:['TPS (procesamiento de transacciones)','DSS (sistema de apoyo a decisiones)','un CRM de ventas','un ERP de almacén'],a:1,exp:'DSS = Decision Support System, ayuda a la dirección a decidir. El TPS procesa transacciones rutinarias.'},
+  {q:'Una organización muy centralizada implica que las decisiones:',o:['se toman en los niveles bajos','se concentran en la alta dirección','no se toman','las toma el cliente'],a:1,exp:'Centralización = decisiones concentradas arriba; descentralización = delegadas hacia abajo.'},
+  {t:'caso',q:'Una empresa con entorno muy cambiante y trabajadores cualificados conviene que sea:',o:['muy centralizada y rígida','más descentralizada y flexible (orgánica)','sin dirección','en comité siempre'],a:1,exp:'Entorno cambiante + RRHH cualificados → estructura orgánica, flexible y descentralizada.'},
+  {t:'multi',q:'Marca tipos válidos de departamentalización:',o:['Geográfica','Por productos','Por clientes','Por colores'],a:[0,1,2],exp:'Departamentalización: funcional, geográfica, por productos, por clientes y por procesos.'},
+  {t:'vf',q:'El empowerment consiste en dar poder de decisión y autonomía a los trabajadores.',a:0,exp:'Verdadero. Empowerment = delegar poder de decisión en el empleado.'}
+ ],
+ 'quiz-personas':[
+  {q:'El reclutamiento interno consiste en cubrir un puesto:',o:['con personas de fuera de la empresa','promocionando a empleados que ya están en la empresa','con una ETT siempre','sin proceso de selección'],a:1,exp:'Interno = se recurre a la propia plantilla (promoción); externo = candidatos de fuera.'},
+  {q:'Una ventaja del reclutamiento externo es que:',o:['motiva la promoción interna','aporta ideas y perfiles nuevos a la empresa','es siempre más barato','no requiere selección'],a:1,exp:'El externo aporta savia/ideas nuevas; el interno motiva y es más barato pero no renueva.'},
+  {q:'La evaluación del desempeño sirve para:',o:['fijar el balance','valorar el rendimiento del trabajador y orientar formación y promoción','calcular el VAN','elegir proveedores'],a:1,exp:'Evaluar el trabajo mide el rendimiento y orienta remuneración, formación y promoción.'},
+  {q:'El pago por incentivos (p. ej. a destajo) vincula la remuneración a:',o:['la antigüedad','el rendimiento o la producción del trabajador','el convenio sin más','el número de hijos'],a:1,exp:'Los incentivos ligan el salario a la productividad o los resultados del trabajador.'},
+  {q:'En el proceso de motivación, la secuencia correcta es:',o:['satisfacción, necesidad, motivación','necesidad, motivación, comportamiento, satisfacción','comportamiento, necesidad, motivación','motivación, necesidad, satisfacción'],a:1,exp:'Necesidad → motivación → comportamiento dirigido a un objetivo → satisfacción de la necesidad.'},
+  {q:'La cultura empresarial es:',o:['el organigrama oficial','el conjunto de valores, normas y creencias compartidos','la cuenta de pérdidas y ganancias','el reglamento fiscal'],a:1,exp:'Cultura = valores y normas compartidos que dan identidad a la organización.'},
+  {q:'La gestión del conocimiento busca:',o:['ocultar la información','capturar, compartir y aprovechar el saber de la organización','reducir la plantilla','aumentar el endeudamiento'],a:1,exp:'Gestión del conocimiento = capturar y compartir el saber (tácito y explícito) de la empresa.'},
+  {t:'vf',q:'Según la teoría X de McGregor, el trabajador es responsable y solo necesita que le den autonomía.',a:1,exp:'Falso. Eso es la teoría Y. La X ve al trabajador como vago, que necesita control.'}
+ ],
+ 'quiz-riesgo':[
+  {q:'En un ambiente de CERTEZA se conocen:',o:['ni los datos ni las probabilidades','todos los datos y resultados con seguridad','solo algunas probabilidades','únicamente el peor caso'],a:1,exp:'Certeza = se conoce todo. Riesgo = se conocen probabilidades. Incertidumbre = no se conocen.'},
+  {q:'La diferencia entre decidir en RIESGO y en INCERTIDUMBRE es que en riesgo:',o:['no hay ningún dato','se conocen las probabilidades de los estados','siempre se gana','no hay alternativas'],a:1,exp:'En riesgo se conocen las probabilidades de los estados; en incertidumbre no.'},
+  {q:'A más información disponible, la incertidumbre:',o:['aumenta','disminuye','no cambia','se vuelve infinita'],a:1,exp:'Regla del tema: a más información, menos incertidumbre (se tiende hacia la certeza).'},
+  {q:'Un juego de suma cero (teoría de juegos) es aquel en el que:',o:['todos los jugadores ganan','lo que gana uno lo pierde exactamente el otro','nadie decide','no hay estrategias'],a:1,exp:'Suma cero: la ganancia de un jugador es justo la pérdida del otro.'},
+  {q:'Capitalizar y descontar (valor del dinero en el tiempo) significan, respectivamente:',o:['llevar al futuro y traer al presente','traer al presente y llevar al futuro','sumar y restar','ambos traer al presente'],a:0,exp:'Capitalizar = llevar un valor al futuro; descontar/actualizar = traerlo al presente.'},
+  {t:'caso',q:'Sabes que un estado tiene 30 % de probabilidad y otro 70 %. El ambiente de decisión es de:',o:['certeza','riesgo','incertidumbre no estructurada','sin información alguna'],a:1,exp:'Conocer las probabilidades de los estados define el ambiente de riesgo.'},
+  {t:'num',q:'Matriz A2=(300,300,100), con P=(0,5; 0,3; 0,2). ¿Cuál es la esperanza E(A2) en €?',ans:260,tol:1,unit:'€',exp:'0,5·300 + 0,3·300 + 0,2·100 = 150+90+20 = 260 €.'}
+ ],
+ 'quiz-tecnicas':[
+  {q:'En un nodo de DECISIÓN (cuadrado) de un árbol se:',o:['calcula la media ponderada','elige la rama con mayor valor esperado','suman las probabilidades','no se hace nada'],a:1,exp:'Nodo de decisión (cuadrado) → se elige el mayor VE. Nodo de azar (círculo) → VE = Σ p·x.'},
+  {q:'La región factible en programación lineal es:',o:['cualquier punto del plano','el conjunto de puntos que cumple todas las restricciones','solo el origen','la función objetivo'],a:1,exp:'Región factible = puntos que cumplen todas las restricciones; el óptimo está en un vértice.'},
+  {q:'Si una actividad no crítica tiene una holgura de 3 días, significa que:',o:['retrasa el proyecto con seguridad','puede retrasarse hasta 3 días sin retrasar el proyecto','dura exactamente 3 días','no existe'],a:1,exp:'La holgura es el margen de retraso de una actividad sin afectar a la duración total.'},
+  {t:'vf',q:'El valor esperado de la información perfecta (VEIP) es lo máximo que conviene pagar por conocer con certeza el estado de la naturaleza.',a:0,exp:'Verdadero. VEIP = tope que se pagaría por información que eliminara la incertidumbre.'}
+ ],
+ 'quiz-financieras':[
+  {q:'El objetivo financiero primario de la empresa es:',o:['maximizar las ventas','maximizar la riqueza del accionista (el precio de la acción)','minimizar los activos','aumentar la plantilla'],a:1,exp:'Objetivo financiero = maximizar el valor para el accionista = maximizar el precio de la acción.'},
+  {q:'El EBITDA es el beneficio antes de:',o:['las ventas y las compras','intereses, impuestos, depreciaciones y amortizaciones','solo los impuestos','el IVA'],a:1,exp:'EBITDA = Earnings Before Interest, Taxes, Depreciation and Amortization.'},
+  {q:'El patrimonio neto (PN), en términos de valoración contable, representa:',o:['las deudas con bancos','el valor contable de la empresa para sus propietarios','el activo corriente','los ingresos del año'],a:1,exp:'PN = recursos propios = valor contable de la empresa (Activo − Pasivo).'},
+  {q:'El activo corriente está formado por elementos que:',o:['permanecen más de un año','se convierten en liquidez en menos de un año','son siempre inmuebles','son deudas a largo plazo'],a:1,exp:'Activo corriente = a corto plazo (existencias, clientes, tesorería); no corriente = a largo plazo.'},
+  {q:'El fondo de maniobra necesario (o mínimo) es:',o:['el dinero en caja','la inversión en activo corriente que debe financiarse con recursos permanentes','el beneficio neto','el pasivo total'],a:1,exp:'Es el FM que la empresa necesita para que su ciclo de explotación funcione sin tensiones.'},
+  {t:'caso',q:'Una empresa tiene un ratio de liquidez (AC/PC) de 0,8. Esto indica que:',o:['tiene liquidez holgada','podría tener problemas para pagar sus deudas a corto plazo','no tiene deudas','su ROE es alto'],a:1,exp:'Liquidez < 1 → el activo corriente no cubre el pasivo corriente: riesgo de impago a corto.'},
+  {t:'vf',q:'El periodo medio de maduración financiero es siempre mayor que el económico.',a:1,exp:'Falso. Financiero = económico − periodo de pago a proveedores, así que suele ser menor.'}
+ ],
+ 'quiz-inversiones':[
+  {q:'Una inversión de renovación (reemplazo) consiste en:',o:['ampliar la capacidad','sustituir un equipo viejo por otro nuevo','lanzar un producto nuevo','comprar otra empresa'],a:1,exp:'Renovación/reemplazo = sustituir activos obsoletos. Otros tipos: expansión, modernización, estratégicas.'},
+  {q:'El valor residual de una inversión es:',o:['el desembolso inicial','el valor de venta del activo al final de su vida','el flujo del primer año','el coste de capital'],a:1,exp:'Valor residual = lo que se recupera por el activo al terminar el proyecto.'},
+  {q:'Los métodos estáticos de selección de inversiones se caracterizan por:',o:['descontar los flujos','NO tener en cuenta el valor del dinero en el tiempo','usar siempre el VAN','requerir la TIR'],a:1,exp:'Estáticos (payback simple, flujo neto total) no descuentan; dinámicos (VAN, TIR) sí.'},
+  {t:'caso',q:'Dos proyectos: A tiene VAN +5.000 € y B tiene VAN −1.000 €. ¿Cuál se acepta?',o:['Ninguno','Solo A','Solo B','Los dos'],a:1,exp:'Se acepta el de VAN positivo (A); B destruye valor.'},
+  {t:'num',q:'D₀=11.000 €; flujos 5.000/6.000/4.000; k=8 %. ¿VAN (€, aprox)?',ans:949,tol:10,unit:'€',exp:'4.629,63 + 5.144,03 + 3.175,33 − 11.000 ≈ +949 €.'}
+ ],
+ 'quiz-financiacion':[
+  {q:'El leasing es:',o:['una subvención pública','un arrendamiento financiero con opción de compra','una ampliación de capital','un pago a proveedores'],a:1,exp:'Leasing = arrendamiento financiero a largo plazo con opción de compra al final.'},
+  {q:'El factoring consiste en:',o:['emitir acciones','ceder los derechos de cobro (facturas) a una entidad para cobrar antes','pedir un préstamo hipotecario','repartir dividendos'],a:1,exp:'Factoring = ceder las facturas pendientes para obtener liquidez inmediata.'},
+  {q:'Una ampliación de capital es una fuente de financiación:',o:['ajena y a corto plazo','propia y externa (nuevas aportaciones de socios)','interna (autofinanciación)','de proveedores'],a:1,exp:'Ampliación de capital = recursos propios pero de origen externo (los socios aportan).'},
+  {q:'Los recursos propios de la empresa incluyen:',o:['préstamos bancarios','capital social y reservas','deudas con proveedores','empréstitos'],a:1,exp:'Propios = capital + reservas (y resultados retenidos). Ajenos = deudas y créditos.'},
+  {t:'vf',q:'La financiación de proveedores (crédito comercial) es una fuente ajena a corto plazo.',a:0,exp:'Verdadero. El aplazamiento del pago a proveedores es financiación ajena de corto plazo.'}
+ ],
+ 'quiz-produccion':[
+  {q:'En la función de operaciones, los inputs TRANSFORMABLES son:',o:['las máquinas y los trabajadores','los materiales o clientes que sufren la transformación','la energía de los edificios','los directivos'],a:1,exp:'Transformables = lo que se transforma (materias, componentes, clientes). Transformadores = máquinas, operarios, instalaciones.'},
+  {q:'La distribución en planta POR PROCESO (taller) agrupa:',o:['las máquinas por fases de un único producto en cadena','las máquinas o secciones por funciones similares','el producto fijo mientras los recursos van a él','a los clientes'],a:1,exp:'Por proceso = se agrupan máquinas semejantes (taller). Por producto = línea/cadena. Posición fija = producto inmóvil.'},
+  {q:'La distribución en planta POR PRODUCTO se usa cuando:',o:['se fabrica bajo pedido y muy variado','se produce en serie con flujo continuo (cadena de montaje)','el producto es enorme e inmóvil','no hay producción'],a:1,exp:'Por producto = producción en serie/cadena (p. ej. automóviles).'},
+  {t:'caso',q:'Se construye un barco o un edificio: el producto no se mueve y los recursos acuden a él. ¿Qué distribución es?',o:['Por proceso','Por producto','De posición fija','En cadena'],a:2,exp:'Posición fija: el producto permanece quieto (barco, avión, obra) y se le llevan los recursos.'},
+  {q:'La productividad se calcula como:',o:['ventas − costes','producción obtenida / factores empleados','costes fijos / unidades','precio × cantidad'],a:1,exp:'Productividad = output / input: producción entre los factores empleados.'},
+  {q:'Las economías de escala consisten en:',o:['subir el coste unitario al producir más','reducir el coste unitario al aumentar el volumen de producción','no producir nada','vender más caro'],a:1,exp:'Economías de escala: a mayor volumen, menor coste por unidad; pasado un punto aparecen deseconomías.'},
+  {q:'La logística se ocupa de:',o:['fijar el precio de venta','el flujo y almacenamiento de materiales y productos (aprovisionamiento y distribución)','contratar a los directivos','la publicidad'],a:1,exp:'Logística = gestión del flujo de materiales: aprovisionamiento, almacenamiento y distribución.'},
+  {q:'El estudio de métodos y tiempos (Taylor) busca:',o:['subir los precios','analizar y simplificar el trabajo para mejorar la eficiencia','reducir las ventas','eliminar la calidad'],a:1,exp:'Estudio de métodos y tiempos = analizar las operaciones para simplificar el trabajo y medir tiempos.'},
+  {t:'vf',q:'El pago a destajo es un sistema de remuneración por incentivos ligado a las unidades producidas.',a:0,exp:'Verdadero. A destajo = se cobra según la producción o unidades realizadas.'},
+  {t:'multi',q:'Marca las distribuciones en planta válidas:',o:['Por proceso','Por producto','De posición fija','Por color'],a:[0,1,2],exp:'Las tres básicas: por proceso (taller), por producto (cadena) y de posición fija.'},
+  {t:'caso',q:'Un taller fabrica piezas muy variadas y bajo pedido, con máquinas agrupadas por su función. ¿Qué distribución usa?',o:['Por producto','Por proceso','De posición fija','Just-in-time'],a:1,exp:'Producción variada y bajo pedido con máquinas por función = distribución por proceso (taller).'}
+ ],
+ 'quiz-marketing':[
+  {q:'La investigación de mercados con fuentes SECUNDARIAS usa:',o:['encuestas hechas a propósito','datos ya existentes (estadísticas, informes publicados)','experimentos nuevos','entrevistas propias'],a:1,exp:'Secundarias = datos ya disponibles. Primarias = se obtienen a propósito (encuestas, experimentos).'},
+  {q:'Segmentar un mercado consiste en:',o:['venderle a todos por igual','dividir el mercado en grupos homogéneos de consumidores','bajar el precio','eliminar a la competencia'],a:1,exp:'Segmentación = dividir el mercado en grupos con necesidades o características similares.'},
+  {q:'En el ciclo de vida del producto, la fase de ventas máximas y estabilizadas es:',o:['introducción','crecimiento','madurez','declive'],a:2,exp:'Etapas: introducción → crecimiento → madurez (ventas máximas/estables) → declive.'},
+  {q:'Un canal de distribución DIRECTO se caracteriza por:',o:['tener muchos intermediarios','vender del fabricante al consumidor sin intermediarios','usar solo mayoristas','no vender nada'],a:1,exp:'Directo = sin intermediarios (fabricante→cliente). Indirecto = con mayoristas/minoristas.'},
+  {q:'El mayorista, dentro de la distribución, vende:',o:['directamente al consumidor final','a otros intermediarios o minoristas en grandes volúmenes','solo al fabricante','servicios financieros'],a:1,exp:'Mayorista = grandes volúmenes a minoristas/distribuidores. Minorista = venta al consumidor final.'},
+  {q:'Dentro de la promoción (comunicación), la publicidad es:',o:['comunicación personal cara a cara','comunicación impersonal y pagada a través de medios masivos','un descuento puntual','la atención postventa'],a:1,exp:'Publicidad = comunicación impersonal y pagada en medios masivos; la venta personal sí es cara a cara.'},
+  {q:'Las variables del marketing mix (4 P) son producto, precio, distribución (plaza) y:',o:['personas','promoción / comunicación','proceso','presupuesto'],a:1,exp:'Las 4 P: Product, Price, Place y Promotion.'},
+  {t:'caso',q:'Una empresa estudia el mercado mediante una encuesta diseñada por ella misma. Está usando fuentes:',o:['secundarias','primarias','internas contables','de la competencia'],a:1,exp:'Datos obtenidos a propósito (encuesta propia) = fuentes primarias.'},
+  {t:'multi',q:'Marca instrumentos de la promoción / comunicación comercial:',o:['Publicidad','Relaciones públicas','Venta personal','Fondo de maniobra'],a:[0,1,2],exp:'Promoción: publicidad, promoción de ventas, relaciones públicas y venta personal.'}
+ ],
+ 'quiz-valoracion':[
+  {q:'El apalancamiento total (combinado) se obtiene como:',o:['GAO + GAF','GAO × GAF','GAO − GAF','GAF / GAO'],a:1,exp:'Apalancamiento total = GAO × GAF (operativo por financiero).'},
+  {q:'Un ICR (cobertura de intereses) de 1,2 indica:',o:['una situación muy holgada','una cobertura escasa, con riesgo de insolvencia','que no hay deuda','el beneficio máximo'],a:1,exp:'ICR bajo (< 1,5) = el beneficio operativo apenas cubre los intereses: riesgo.'},
+  {q:'Valorar una empresa como "3 veces el EBITDA" (múltiplos) es un método de:',o:['valoración en liquidación','valoración en funcionamiento (going concern)','cálculo del punto muerto','análisis DAFO'],a:1,exp:'Los múltiplos de mercado (× EBITDA, × ventas) son valoración en funcionamiento.'},
+  {t:'caso',q:'Se valora una empresa con motivo de una fusión entre dos compañías. Es una valoración:',o:['ordinaria','extraordinaria','imposible','contable sin más'],a:1,exp:'Fusiones, liquidaciones y concursos son situaciones de valoración extraordinaria.'}
+ ]
+};
+
 const $ = id => document.getElementById(id);
 function escapeHtml(t){return (''+t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-// Fusiona las preguntas de variedad en los bancos base
+// Fusiona las preguntas de variedad y de cobertura en los bancos base
 if(typeof bancosExtra!=='undefined'){Object.keys(bancosExtra).forEach(k=>{bancos[k]=(bancos[k]||[]).concat(bancosExtra[k]);});}
+if(typeof bancosCobertura!=='undefined'){Object.keys(bancosCobertura).forEach(k=>{bancos[k]=(bancos[k]||[]).concat(bancosCobertura[k]);});}
 
 const TYPE_LABEL={mcq:'Test',caso:'Caso práctico',neg:'Elige la falsa',vf:'Verdadero / Falso',multi:'Multi-respuesta',num:'Cálculo',order:'Ordenar'};
 
