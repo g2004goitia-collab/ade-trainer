@@ -1513,6 +1513,8 @@ function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.ran
 // Fusiona las preguntas de variedad y de cobertura en los bancos base
 if(typeof bancosExtra!=='undefined'){Object.keys(bancosExtra).forEach(k=>{bancos[k]=(bancos[k]||[]).concat(bancosExtra[k]);});}
 if(typeof bancosCobertura!=='undefined'){Object.keys(bancosCobertura).forEach(k=>{bancos[k]=(bancos[k]||[]).concat(bancosCobertura[k]);});}
+// id estable por pregunta: viaja con el objeto, así cuenta igual en el tema o en el simulacro
+Object.keys(bancos).forEach(k=>bancos[k].forEach((q,i)=>{q._qk=k+'#'+i;}));
 
 const TYPE_LABEL={mcq:'Test',caso:'Caso práctico',neg:'Elige la falsa',vf:'Verdadero / Falso',multi:'Multi-respuesta',num:'Cálculo',order:'Ordenar'};
 
@@ -1551,7 +1553,7 @@ function renderQuiz(containerId, questions){
   questions.forEach((q,i)=>{
     const type=q.t||'mcq';
     const wrap=document.createElement('div'); wrap.className='quiz-q'; wrap.dataset.type=type;
-    if(containerId!=='quiz-simulacro') wrap.dataset.qkey=containerId+'#'+i;
+    if(q._qk) wrap.dataset.qkey=q._qk;
     const badge=`<span class="q-badge q-${type}">${TYPE_LABEL[type]||'Test'}</span>`;
     const explain=`<div class="quiz-explain"><b>Razonamiento</b>${escapeHtml(q.exp)}</div>`;
     let inner='';
