@@ -303,6 +303,7 @@ section.chapter{padding:72px 64px 60px;scroll-margin-top:24px;border-bottom:1px 
 .chip:hover{border-color:var(--line-2);color:var(--ink)}
 .chip.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 .chip.incorrect{background:var(--bad-bg);border-color:var(--bad);color:var(--ink)}
+.progress-val.done{color:var(--accent)!important;font-weight:600}
 .quiz-sol{display:none;margin-top:11px;padding:11px 16px;border:1px solid var(--accent);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--bg-soft);font-size:14px;font-weight:600;color:var(--ink);line-height:1.5}
 .quiz-sol.show{display:block}
 .quiz-sol b{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;font-weight:600}
@@ -1515,12 +1516,32 @@ if(typeof bancosCobertura!=='undefined'){Object.keys(bancosCobertura).forEach(k=
 
 const TYPE_LABEL={mcq:'Test',caso:'Caso práctico',neg:'Elige la falsa',vf:'Verdadero / Falso',multi:'Multi-respuesta',num:'Cálculo',order:'Ordenar'};
 
+// --- Recuento persistente: preguntas únicas respondidas (sube hasta el total) ---
+const ANS_KEY='ade-answered-q';
+let answeredSet=new Set();
+try{answeredSet=new Set(JSON.parse(localStorage.getItem(ANS_KEY)||'[]'));}catch(e){}
+function totalPreguntas(){return Object.keys(bancos).reduce((s,k)=>s+bancos[k].length,0);}
+function updateRecuento(){
+  const T=totalPreguntas(); const a=Math.min(answeredSet.size,T); const pct=T?Math.round(a/T*100):0;
+  const bar=$('progressBar'); if(bar)bar.style.width=pct+'%';
+  const pv=$('progressVal'); if(pv){ const done=a>=T;
+    pv.textContent=(done?'✓ ':'')+a+' / '+T+(done?' · ¡completo!':' · '+pct+' %');
+    pv.classList.toggle('done',done); }
+}
+function recordAnswered(qkey){
+  if(answeredSet.has(qkey))return;
+  answeredSet.add(qkey);
+  try{localStorage.setItem(ANS_KEY,JSON.stringify([...answeredSet]));}catch(e){}
+  updateRecuento();
+}
+
 function markResult(parent,ok){
   if(parent.dataset.answered) return;
   parent.dataset.answered='1';
   parent.dataset.result=ok?'correct':'wrong';
   const ex=parent.querySelector('.quiz-explain'); if(ex)ex.classList.add('show');
   const so=parent.querySelector('.quiz-sol'); if(so)so.classList.add('show');
+  if(parent.dataset.qkey) recordAnswered(parent.dataset.qkey);
   saveProgress();
   if(parent.closest('#quiz-simulacro'))checkSimulacro();
 }
@@ -1530,6 +1551,7 @@ function renderQuiz(containerId, questions){
   questions.forEach((q,i)=>{
     const type=q.t||'mcq';
     const wrap=document.createElement('div'); wrap.className='quiz-q'; wrap.dataset.type=type;
+    if(containerId!=='quiz-simulacro') wrap.dataset.qkey=containerId+'#'+i;
     const badge=`<span class="q-badge q-${type}">${TYPE_LABEL[type]||'Test'}</span>`;
     const explain=`<div class="quiz-explain"><b>Razonamiento</b>${escapeHtml(q.exp)}</div>`;
     let inner='';
@@ -1675,11 +1697,7 @@ function saveProgress(){
   updateProgressUI(data);
 }
 function loadProgress(){try{const r=localStorage.getItem('ade-trainer-progress'); if(r)updateProgressUI(JSON.parse(r));}catch(e){}}
-function updateProgressUI(data){
-  let a=0,t=0; Object.values(data).forEach(v=>{a+=v.answered;t+=v.total});
-  const pct=t?Math.round(a/t*100):0;
-  $('progressBar').style.width=pct+'%'; $('progressVal').textContent=pct+' %';
-}
+function updateProgressUI(data){ updateRecuento(); }
 
 const TEMAS=[
  {id:'empresa',n:'1',t:'La empresa',b:'Coste de oportunidad, sistema, clases de empresa y stakeholders.'},
@@ -1723,7 +1741,7 @@ function showRoute(route){
 function router(){showRoute((location.hash||'#home').replace(/^#/,''));}
 window.addEventListener('hashchange',router);
 buildTemaGrid(); router();
-loadProgress(); setInterval(saveProgress,5000);
+loadProgress(); updateRecuento(); setInterval(saveProgress,5000);
 
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
